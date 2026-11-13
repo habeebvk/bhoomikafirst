@@ -93,16 +93,87 @@
           </ul>
         </nav>
 
-        <!-- Post Property CTA -->
-        <div style="display: flex; align-items: center; gap: 14px;">
+        <!-- Post Property CTA & Mobile Actions -->
+        <div class="ha-header-actions">
+          <button class="ha-mobile-shortlist-btn" onclick="openShortlistModal()" aria-label="View shortlisted properties">
+            <span>♥</span>
+            <span class="ha-count-badge" id="shortlistBadgeMobile">0</span>
+          </button>
           <button class="ha-post-btn" onclick="openPostModal()">
             <span>+ Post Property</span>
             <span class="ha-free-tag">Free</span>
           </button>
-          <button class="mobile-toggle" onclick="alert('Menu items: Buy, Rent, Plots, Projects, Home Loans')">☰</button>
+          <button type="button" class="mobile-toggle" id="mobileMenuToggle" onclick="toggleMobileNav()" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="mobileNavDrawer">☰</button>
         </div>
     </div>
   </header>
+
+  <!-- Mobile Navigation Drawer & Backdrop -->
+  <div class="ha-mobile-backdrop" id="mobileNavBackdrop" onclick="closeMobileNav()"></div>
+  <aside class="ha-mobile-drawer" id="mobileNavDrawer" aria-hidden="true" aria-label="Mobile Navigation">
+    <div class="ha-mobile-drawer-head">
+      <a href="#home" class="ha-brand" onclick="closeMobileNav()">
+        <img src="bhoomika_logo.jpg" alt="Bhoomika Land Bank" class="ha-mobile-drawer-logo">
+      </a>
+      <button type="button" class="ha-mobile-drawer-close" onclick="closeMobileNav()" aria-label="Close navigation menu">✕</button>
+    </div>
+
+    <div class="ha-mobile-drawer-body">
+      <!-- District Switcher -->
+      <div class="ha-mobile-district-box">
+        <label class="ha-field-label" for="mobileCitySelect">📍 Selected District</label>
+        <select id="mobileCitySelect" class="ha-select" onchange="syncCitySelection(this.value)">
+          <option value="All">All Kerala</option>
+          <option value="Kochi" selected>Kochi (Ernakulam)</option>
+          <option value="Trivandrum">Thiruvananthapuram</option>
+          <option value="Kozhikode">Kozhikode (Calicut)</option>
+          <option value="Thrissur">Thrissur</option>
+          <option value="Kottayam">Kottayam</option>
+          <option value="Palakkad">Palakkad</option>
+          <option value="Alappuzha">Alappuzha</option>
+          <option value="Kannur">Kannur</option>
+        </select>
+      </div>
+
+      <!-- Primary Navigation -->
+      <nav aria-label="Mobile Menu Links">
+        <ul class="ha-mobile-nav-list">
+          <li><a href="#home" class="ha-mobile-nav-link" onclick="closeMobileNav()"><span>🏠</span> Home</a></li>
+          <li><a href="#verifiedListingsSection" class="ha-mobile-nav-link" onclick="setSearchTab('Buy', document.querySelector('.ha-search-tab:nth-child(1)')); closeMobileNav();"><span>🏡</span> Buy Properties</a></li>
+          <li><a href="#verifiedListingsSection" class="ha-mobile-nav-link" onclick="setSearchTab('Rent', document.querySelector('.ha-search-tab:nth-child(2)')); closeMobileNav();"><span>🔑</span> Rent Homes</a></li>
+          <li><a href="#verifiedListingsSection" class="ha-mobile-nav-link" onclick="setSearchTab('Plots', document.querySelector('.ha-search-tab:nth-child(3)')); closeMobileNav();"><span>📐</span> Plots & Land</a></li>
+          <li><a href="#featuredProjectsSection" class="ha-mobile-nav-link" onclick="closeMobileNav()"><span>🏗️</span> New Projects</a></li>
+          <li><a href="#videoToursSection" class="ha-mobile-nav-link" onclick="closeMobileNav()"><span>▶</span> Video Tours</a></li>
+          <li><a href="#landAdvisorSection" class="ha-mobile-nav-link" onclick="closeMobileNav()"><span>🤝</span> Land Advisor</a></li>
+          <li><a href="#calculatorSection" class="ha-mobile-nav-link" onclick="closeMobileNav()"><span>🏦</span> Home Loans</a></li>
+        </ul>
+      </nav>
+
+      <!-- Utility & Account Actions -->
+      <div class="ha-mobile-drawer-utils">
+        <button type="button" class="ha-mobile-util-btn" onclick="closeMobileNav(); openShortlistModal();">
+          <span>♥ Shortlist</span>
+          <span class="ha-count-badge" id="shortlistBadgeDrawer">0</span>
+        </button>
+        <button type="button" class="ha-mobile-util-btn ha-mobile-util-highlight" onclick="closeMobileNav(); openLandAdvisorModal();">
+          <span>🤝 Become Land Advisor</span>
+        </button>
+        <a href="#nriSection" class="ha-mobile-util-btn" onclick="closeMobileNav()">
+          <span>🌐 NRI Desk</span>
+        </a>
+        <button type="button" class="ha-mobile-util-btn" onclick="closeMobileNav(); openAuthModal();">
+          <span>👤 Sign In / Register</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="ha-mobile-drawer-foot">
+      <button type="button" class="btn btn-primary" style="width: 100%;" onclick="closeMobileNav(); openPostModal();">
+        <span>+ Post Property</span>
+        <span class="ha-free-tag">Free</span>
+      </button>
+    </div>
+  </aside>
 
   <!-- ==========================================================================
        3. HERO BANNER & MULTI-TAB SEARCH CONSOLE
@@ -804,11 +875,11 @@
             </div>
           </div>
 
-          <div style="margin-top: 24px; display: flex; align-items: center; gap: 14px; flex-wrap: wrap;">
-            <button class="btn btn-primary" onclick="openLandAdvisorModal()" style="padding: 12px 24px;">
+          <div class="ha-advisor-cta-row">
+            <button class="btn btn-primary ha-advisor-cta-btn" onclick="openLandAdvisorModal()">
               ✍️ Open Detailed Registration Form
             </button>
-            <span style="font-size: 0.82rem; color: #64748B;">⚡ Instant onboarding • Free verification badge</span>
+            <span class="ha-advisor-cta-note">⚡ Instant onboarding • Free verification badge</span>
           </div>
         </div>
 
@@ -1037,7 +1108,7 @@
 
         <div class="ha-footer-bottom">
           <div>© 2026 Bhoomika Land Bank Kerala. All Rights Reserved. Buy • Sell • Develop • Connect.</div>
-          <div style="display: flex; gap: 18px;">
+          <div class="ha-footer-bottom-links">
             <a href="javascript:void(0)">Privacy Policy</a>
             <a href="javascript:void(0)">Terms of Use</a>
             <a href="javascript:void(0)">RERA Disclaimer</a>
@@ -1061,13 +1132,13 @@
         Kerala buyers immediately.</p>
 
       <form onsubmit="handlePostProperty(event)">
-        <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 12px; margin-bottom: 12px;">
-          <div>
+        <div class="ha-form-row ha-form-row-2-1">
+          <div class="ha-form-group">
             <label class="ha-field-label">Listing Title</label>
             <input type="text" id="postTitle" class="ha-input" placeholder="e.g. 3 BHK Luxury Gated Villa with Garden"
               required>
           </div>
-          <div>
+          <div class="ha-form-group">
             <label class="ha-field-label">District</label>
             <select id="postCity" class="ha-select">
               <option value="Kochi">Kochi</option>
@@ -1079,12 +1150,12 @@
           </div>
         </div>
 
-        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-bottom: 12px;">
-          <div>
+        <div class="ha-form-row ha-form-row-3">
+          <div class="ha-form-group">
             <label class="ha-field-label">Locality / Landmark</label>
             <input type="text" id="postLocality" class="ha-input" placeholder="e.g. Kakkanad" required>
           </div>
-          <div>
+          <div class="ha-form-group">
             <label class="ha-field-label">Property Type</label>
             <select id="postType" class="ha-select">
               <option value="Apartment">Apartment</option>
@@ -1093,7 +1164,7 @@
               <option value="Commercial">Commercial</option>
             </select>
           </div>
-          <div>
+          <div class="ha-form-group">
             <label class="ha-field-label">Mode</label>
             <select id="postCategory" class="ha-select">
               <option value="Buy">For Sale</option>
@@ -1102,16 +1173,16 @@
           </div>
         </div>
 
-        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-bottom: 12px;">
-          <div>
+        <div class="ha-form-row ha-form-row-3">
+          <div class="ha-form-group">
             <label class="ha-field-label">Total Price (₹)</label>
             <input type="number" id="postPrice" class="ha-input" placeholder="e.g. 8500000" required>
           </div>
-          <div>
+          <div class="ha-form-group">
             <label class="ha-field-label">Built-up Area (sq.ft)</label>
             <input type="number" id="postArea" class="ha-input" placeholder="e.g. 1750" required>
           </div>
-          <div>
+          <div class="ha-form-group">
             <label class="ha-field-label">Bedrooms (BHK)</label>
             <select id="postBHK" class="ha-select">
               <option value="1">1 BHK</option>
@@ -1122,12 +1193,12 @@
           </div>
         </div>
 
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px;">
-          <div>
+        <div class="ha-form-row">
+          <div class="ha-form-group">
             <label class="ha-field-label">Owner Name</label>
             <input type="text" id="postOwnerName" class="ha-input" placeholder="Your Name" required>
           </div>
-          <div>
+          <div class="ha-form-group">
             <label class="ha-field-label">Phone / WhatsApp</label>
             <input type="tel" id="postOwnerPhone" class="ha-input" placeholder="+91 98765 43210" required>
           </div>
@@ -1214,7 +1285,7 @@
   <div class="ha-modal-overlay" id="landAdvisorModal">
     <div class="ha-modal-box" style="max-width: 650px;">
       <button class="ha-modal-close" onclick="closeModals()">✕</button>
-      <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 6px;">
+      <div class="ha-modal-badge-row">
         <span style="background: #E8F5F1; color: #0F3E32; font-size: 0.72rem; font-weight: 800; padding: 3px 10px; border-radius: 9999px;">🤝 Bhoomika Partner Network</span>
         <span style="font-size: 0.78rem; color: #64748B;">Official Land Advisor Onboarding</span>
       </div>

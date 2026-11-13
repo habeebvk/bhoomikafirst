@@ -256,7 +256,81 @@ document.addEventListener('DOMContentLoaded', () => {
   renderProperties();
   updateShortlistBadge();
   initMortgageCalculator();
+  initResponsiveNavigation();
 });
+
+// Initialize Mobile Nav Drawer, Modal Dismissal & District Sync
+function initResponsiveNavigation() {
+  document.querySelectorAll('.ha-modal-overlay').forEach(overlay => {
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) closeModals();
+    });
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      closeMobileNav();
+      closeModals();
+    }
+  });
+
+  const searchCityEl = document.getElementById('searchCity');
+  const topCityEl = document.getElementById('topCitySelect');
+  const mobileCityEl = document.getElementById('mobileCitySelect');
+
+  if (searchCityEl) {
+    searchCityEl.addEventListener('change', () => {
+      const val = searchCityEl.value || 'All';
+      if (topCityEl && [...topCityEl.options].some(o => o.value === val)) topCityEl.value = val;
+      if (mobileCityEl && [...mobileCityEl.options].some(o => o.value === val)) mobileCityEl.value = val;
+    });
+  }
+
+  if (topCityEl) {
+    topCityEl.addEventListener('change', () => {
+      if (mobileCityEl) mobileCityEl.value = topCityEl.value;
+    });
+  }
+}
+
+function syncCitySelection(cityVal) {
+  const topCityEl = document.getElementById('topCitySelect');
+  const mobileCityEl = document.getElementById('mobileCitySelect');
+  const searchCityEl = document.getElementById('searchCity');
+
+  if (topCityEl && [...topCityEl.options].some(o => o.value === cityVal)) {
+    topCityEl.value = cityVal;
+  }
+  if (mobileCityEl && [...mobileCityEl.options].some(o => o.value === cityVal)) {
+    mobileCityEl.value = cityVal;
+  }
+  if (searchCityEl) {
+    const searchVal = cityVal === 'All' ? '' : cityVal;
+    searchCityEl.value = [...searchCityEl.options].some(o => o.value === searchVal) ? searchVal : '';
+  }
+  renderProperties();
+}
+
+function toggleMobileNav(forceState) {
+  const drawer = document.getElementById('mobileNavDrawer');
+  const backdrop = document.getElementById('mobileNavBackdrop');
+  const toggleBtn = document.getElementById('mobileMenuToggle');
+  if (!drawer) return;
+
+  const isOpen = typeof forceState === 'boolean' ? forceState : !drawer.classList.contains('open');
+  drawer.classList.toggle('open', isOpen);
+  drawer.setAttribute('aria-hidden', String(!isOpen));
+  if (backdrop) backdrop.classList.toggle('open', isOpen);
+  if (toggleBtn) {
+    toggleBtn.setAttribute('aria-expanded', String(isOpen));
+    toggleBtn.textContent = isOpen ? '✕' : '☰';
+  }
+  document.body.classList.toggle('ha-menu-open', isOpen);
+}
+
+function closeMobileNav() {
+  toggleMobileNav(false);
+}
 
 // Format Indian Rupee (₹ Lakhs / Crores)
 function formatPrice(amount, category) {
@@ -276,7 +350,7 @@ function formatPrice(amount, category) {
 function setSearchTab(tab, btn) {
   currentSearchTab = tab;
   document.querySelectorAll('.ha-search-tab').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
+  if (btn) btn.classList.add('active');
 
   const bhkContainer = document.getElementById('bhkSelectorRow');
   const typeSelect = document.getElementById('searchType');
@@ -460,7 +534,7 @@ function renderProperties() {
 function setCategoryFilter(cat, btn) {
   selectedFilterCategory = cat;
   document.querySelectorAll('.ha-pill-btn').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
+  if (btn) btn.classList.add('active');
   renderProperties();
 }
 
@@ -468,6 +542,10 @@ function setCategoryFilter(cat, btn) {
 function resetAllFilters() {
   document.getElementById('searchKeyword').value = '';
   document.getElementById('searchCity').value = '';
+  const topCity = document.getElementById('topCitySelect');
+  const mobileCity = document.getElementById('mobileCitySelect');
+  if (topCity) topCity.value = 'All';
+  if (mobileCity) mobileCity.value = 'All';
   document.getElementById('searchType').value = 'All';
   document.getElementById('searchBudget').value = '';
   document.getElementById('chkDirectOwner').checked = false;
@@ -533,8 +611,10 @@ function toggleShortlist(id, btn) {
 }
 
 function updateShortlistBadge() {
-  const badge = document.getElementById('shortlistBadge');
-  if (badge) badge.textContent = shortlist.length;
+  ['shortlistBadge', 'shortlistBadgeMobile', 'shortlistBadgeDrawer'].forEach(id => {
+    const badge = document.getElementById(id);
+    if (badge) badge.textContent = shortlist.length;
+  });
 }
 
 function openShortlistModal() {
@@ -542,22 +622,23 @@ function openShortlistModal() {
   const listContainer = document.getElementById('shortlistItems');
   if (!modal || !listContainer) return;
 
+  closeModals();
   const items = propertiesData.filter(p => shortlist.includes(p.id));
   if (items.length === 0) {
     listContainer.innerHTML = '<p style="color: #64748B; text-align:center; padding: 30px;">No shortlisted properties yet. Tap the heart icon on any listing to save it here.</p>';
   } else {
     listContainer.innerHTML = items.map(p => `
-      <div style="display:flex; gap:16px; align-items:center; border-bottom:1px solid #E2E8F0; padding:12px 0;">
-        <img src="${p.image}" style="width:80px; height:60px; object-fit:cover; border-radius:6px;">
-        <div style="flex-grow:1;">
-          <h4 style="font-size:0.95rem; font-weight:800; color:#0F172A; margin-bottom:2px;">${p.title}</h4>
-          <div style="font-size:0.82rem; color:#64748B;">📍 ${p.locality}, ${p.city} • <strong style="color:#0F3E32;">${formatPrice(p.price, p.category)}</strong></div>
+      <div class="ha-shortlist-item">
+        <img src="${p.image}" alt="${p.title}" class="ha-shortlist-thumb">
+        <div class="ha-shortlist-info">
+          <h4 class="ha-shortlist-title">${p.title}</h4>
+          <div class="ha-shortlist-meta">📍 ${p.locality}, ${p.city} • <strong style="color:#0F3E32;">${formatPrice(p.price, p.category)}</strong></div>
         </div>
-        <button class="btn btn-sm btn-outline" onclick="openContactModal('${p.id}')">Enquire</button>
+        <button class="btn btn-sm btn-outline ha-shortlist-btn" onclick="openContactModal('${p.id}')">Enquire</button>
       </div>
     `).join('');
   }
-  modal.classList.add('open');
+  openModalElement(modal);
 }
 
 // Post Property Form Submission
@@ -614,6 +695,7 @@ function openContactModal(propId) {
   const details = document.getElementById('contactPropDetails');
   if (!modal || !details) return;
 
+  closeModals();
   details.innerHTML = `
     <div style="background:#F8FAFC; padding:16px; border-radius:8px; border:1px solid #E2E8F0; margin-bottom:16px;">
       <h4 style="font-size:1rem; font-weight:800; color:#0F172A; margin-bottom:4px;">${prop.title}</h4>
@@ -623,7 +705,7 @@ function openContactModal(propId) {
     </div>
   `;
 
-  modal.classList.add('open');
+  openModalElement(modal);
 }
 
 // Mortgage Calculator Live Logic
@@ -665,36 +747,31 @@ function updateMortgageCalculations() {
 }
 
 // Modal Handlers
+function openModalElement(modal) {
+  if (!modal) return;
+  modal.classList.add('open');
+  document.body.classList.add('ha-modal-open');
+}
+
 function openPostModal() {
-  document.getElementById('postModal')?.classList.add('open');
+  closeModals();
+  openModalElement(document.getElementById('postModal'));
 }
 
 function openAuthModal() {
-  document.getElementById('authModal')?.classList.add('open');
+  closeModals();
+  openModalElement(document.getElementById('authModal'));
 }
 
 function closeModals() {
   document.querySelectorAll('.ha-modal-overlay').forEach(m => m.classList.remove('open'));
+  document.body.classList.remove('ha-modal-open');
 }
 
 // Simple Toast Notification
 function showToast(msg) {
   const toast = document.createElement('div');
-  toast.style.cssText = `
-    position: fixed;
-    bottom: 24px;
-    right: 24px;
-    background: #0F172A;
-    color: #FFFFFF;
-    border-left: 4px solid #0F3E32;
-    padding: 14px 22px;
-    border-radius: 8px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.25);
-    font-size: 0.92rem;
-    font-weight: 700;
-    z-index: 99999;
-    animation: fadeIn 0.3s ease;
-  `;
+  toast.className = 'ha-toast';
   toast.textContent = msg;
   document.body.appendChild(toast);
   setTimeout(() => toast.remove(), 3500);
@@ -731,7 +808,8 @@ function switchYoutubeVideo(videoId, title, locationText, statsText, el) {
 
 // Land Advisor Registration Handlers
 function openLandAdvisorModal() {
-  document.getElementById('landAdvisorModal')?.classList.add('open');
+  closeModals();
+  openModalElement(document.getElementById('landAdvisorModal'));
 }
 
 function handleLandAdvisorSubmit(e, formEl) {
@@ -739,7 +817,7 @@ function handleLandAdvisorSubmit(e, formEl) {
   const form = formEl || e.target;
   const nameInput = form.querySelector('[name="advisorName"]');
   const advisorName = nameInput ? nameInput.value : 'Advisor';
-  
+
   // Collect details
   const advisorRecord = {
     name: advisorName,

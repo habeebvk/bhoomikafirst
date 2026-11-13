@@ -73,6 +73,7 @@
 html {
   scroll-behavior: smooth;
   font-size: 15px;
+  overflow-x: hidden;
 }
 
 body {
@@ -83,6 +84,11 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+}
+
+body.ha-menu-open,
+body.ha-modal-open {
+  overflow: hidden;
 }
 
 a {
@@ -438,13 +444,203 @@ textarea {
   text-transform: uppercase;
 }
 
+.ha-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.ha-mobile-shortlist-btn {
+  display: none;
+  align-items: center;
+  gap: 5px;
+  background: var(--ha-primary-light);
+  color: var(--ha-primary);
+  border: 1px solid rgba(15, 62, 50, 0.22);
+  border-radius: var(--ha-radius-full);
+  padding: 6px 11px;
+  font-weight: 800;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: var(--ha-transition);
+}
+
+.ha-mobile-shortlist-btn:hover {
+  background: var(--ha-primary);
+  color: #FFFFFF;
+}
+
 .mobile-toggle {
   display: none;
-  background: transparent;
-  border: none;
-  font-size: 1.6rem;
+  background: var(--ha-gray-50);
+  border: 1px solid var(--ha-gray-200);
+  border-radius: var(--ha-radius-sm);
+  width: 42px;
+  height: 42px;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  line-height: 1;
   color: var(--ha-dark);
   cursor: pointer;
+  transition: var(--ha-transition);
+}
+
+.mobile-toggle:hover {
+  background: var(--ha-primary-light);
+  border-color: var(--ha-primary);
+  color: var(--ha-primary);
+}
+
+/* Mobile Navigation Drawer */
+.ha-mobile-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(4px);
+  z-index: 900;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+
+.ha-mobile-backdrop.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.ha-mobile-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: min(340px, 88vw);
+  height: 100dvh;
+  max-height: 100vh;
+  background: #FFFFFF;
+  z-index: 950;
+  display: flex;
+  flex-direction: column;
+  box-shadow: -12px 0 36px rgba(15, 23, 42, 0.22);
+  transform: translateX(100%);
+  visibility: hidden;
+  transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.28s ease;
+}
+
+.ha-mobile-drawer.open {
+  transform: translateX(0);
+  visibility: visible;
+}
+
+.ha-mobile-drawer-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--ha-gray-200);
+  flex-shrink: 0;
+}
+
+.ha-mobile-drawer-logo {
+  height: 40px;
+  width: auto;
+  max-width: 150px;
+  object-fit: contain;
+}
+
+.ha-mobile-drawer-close {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid var(--ha-gray-200);
+  background: var(--ha-gray-50);
+  color: var(--ha-dark);
+  font-size: 1.05rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.ha-mobile-drawer-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.ha-mobile-district-box {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  background: var(--ha-gray-50);
+  padding: 12px;
+  border-radius: var(--ha-radius-sm);
+  border: 1px solid var(--ha-gray-200);
+}
+
+.ha-mobile-nav-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ha-mobile-nav-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 9px 12px;
+  border-radius: var(--ha-radius-sm);
+  font-size: 0.94rem;
+  font-weight: 700;
+  color: var(--ha-dark);
+}
+
+.ha-mobile-nav-link:hover,
+.ha-mobile-nav-link:active {
+  background: var(--ha-primary-light);
+  color: var(--ha-primary);
+}
+
+.ha-mobile-drawer-utils {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+  padding-top: 12px;
+  border-top: 1px solid var(--ha-gray-200);
+}
+
+.ha-mobile-util-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: var(--ha-radius-sm);
+  border: 1px solid var(--ha-gray-200);
+  background: #FFFFFF;
+  color: var(--ha-gray-700);
+  font-size: 0.88rem;
+  font-weight: 700;
+  cursor: pointer;
+  text-align: left;
+}
+
+.ha-mobile-util-highlight {
+  background: #FFFBEB;
+  border-color: #FDE68A;
+  color: #92400E;
+}
+
+.ha-mobile-drawer-foot {
+  padding: 14px 18px;
+  border-top: 1px solid var(--ha-gray-200);
+  background: var(--ha-gray-50);
+  flex-shrink: 0;
 }
 
 /* ==========================================================================
@@ -598,6 +794,7 @@ textarea {
   display: flex;
   flex-direction: column;
   gap: 5px;
+  min-width: 0;
 }
 
 .ha-field-label {
@@ -612,6 +809,7 @@ textarea {
   position: relative;
   display: flex;
   align-items: center;
+  width: 100%;
 }
 
 .ha-input-icon {
@@ -626,7 +824,7 @@ textarea {
 .ha-select {
   width: 100%;
   height: 48px;
-  padding: 0 12px 0 38px;
+  padding: 0 14px;
   border: 1.5px solid var(--ha-gray-200);
   border-radius: var(--ha-radius-sm);
   font-size: 0.92rem;
@@ -635,6 +833,17 @@ textarea {
   background-color: #FFFFFF;
   outline: none;
   transition: var(--ha-transition);
+}
+
+.ha-input-wrap .ha-input,
+.ha-input-wrap .ha-select {
+  padding: 0 12px 0 38px;
+}
+
+textarea.ha-input {
+  height: auto;
+  min-height: 76px;
+  padding: 10px 14px;
 }
 
 .ha-input:focus,
@@ -679,6 +888,7 @@ textarea {
 .ha-bhk-pills {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: 8px;
 }
 
@@ -1764,7 +1974,7 @@ textarea {
 
 .ha-ad-creative-left {
   flex: 1;
-  min-width: 280px;
+  min-width: min(280px, 100%);
 }
 
 .ha-ad-partner-tag {
@@ -2214,6 +2424,7 @@ textarea {
 
 .ha-form-group {
   margin-bottom: 13px;
+  min-width: 0;
 }
 
 .ha-form-row {
@@ -2223,14 +2434,173 @@ textarea {
   margin-bottom: 13px;
 }
 
+.ha-form-row>* {
+  min-width: 0;
+}
+
+.ha-form-row-2-1 {
+  grid-template-columns: 2fr 1fr;
+}
+
+.ha-form-row-3 {
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.ha-advisor-card>*,
+.ha-video-layout>* {
+  min-width: 0;
+}
+
+.ha-advisor-cta-row {
+  margin-top: 24px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.ha-advisor-cta-note {
+  font-size: 0.82rem;
+  color: #64748B;
+}
+
+.ha-modal-badge-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 6px;
+  padding-right: 36px;
+}
+
+.ha-shortlist-item {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  border-bottom: 1px solid #E2E8F0;
+  padding: 12px 0;
+}
+
+.ha-shortlist-item:last-child {
+  border-bottom: none;
+}
+
+.ha-shortlist-thumb {
+  width: 84px;
+  height: 64px;
+  object-fit: cover;
+  border-radius: 6px;
+  flex-shrink: 0;
+}
+
+.ha-shortlist-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.ha-shortlist-title {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: #0F172A;
+  margin-bottom: 2px;
+}
+
+.ha-shortlist-meta {
+  font-size: 0.82rem;
+  color: #64748B;
+}
+
+.ha-toast {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  max-width: 420px;
+  background: #0F172A;
+  color: #FFFFFF;
+  border-left: 4px solid #0F3E32;
+  padding: 14px 20px;
+  border-radius: 8px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+  font-size: 0.9rem;
+  font-weight: 700;
+  z-index: 99999;
+  animation: fadeIn 0.3s ease;
+}
+
+.ha-footer-input {
+  min-width: 0;
+}
+
+.ha-footer-bottom-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px 18px;
+}
+
+.ha-project-badges {
+  flex-wrap: wrap;
+  right: 12px;
+}
+
+.ha-project-specs,
+.ha-project-price-row {
+  flex-wrap: wrap;
+  gap: 8px 12px;
+}
+
 /* Responsive Overrides */
+@media (max-width: 1180px) {
+  .ha-top-pill {
+    display: none;
+  }
+
+  .ha-top-right {
+    gap: 12px;
+  }
+
+  .ha-nav-item>a {
+    padding: 8px 10px;
+    font-size: 0.86rem;
+  }
+
+  .ha-post-btn {
+    padding: 8px 14px;
+    font-size: 0.86rem;
+  }
+}
+
 @media (max-width: 1024px) {
+  .ha-nav-menu {
+    display: none;
+  }
+
+  .ha-mobile-shortlist-btn,
+  .mobile-toggle {
+    display: inline-flex;
+  }
+
   .ha-search-grid {
     grid-template-columns: 1fr 1fr;
   }
 
+  .btn-search {
+    grid-column: 1 / -1;
+    width: 100%;
+    justify-content: center;
+  }
+
   .ha-trust-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+  }
+
+  .ha-trust-item {
+    border-right: none;
+    padding: 12px;
+    background: var(--ha-gray-50);
+    border-radius: var(--ha-radius-sm);
+    border: 1px solid var(--ha-gray-200);
   }
 
   .ha-categories-grid {
@@ -2260,105 +2630,582 @@ textarea {
     gap: 20px;
   }
 
+  .ha-video-playlist-items {
+    max-height: none;
+  }
+
   .ha-advisor-card {
     grid-template-columns: 1fr;
-    padding: 26px 20px;
-  }
-}
-
-@media (max-width: 768px) {
-  .ha-form-row {
-    grid-template-columns: 1fr;
-    gap: 0;
-  }
-  .ha-ad-creative {
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 16px;
-  }
-
-  .ha-ad-creative-right {
-    width: 100%;
-    justify-content: space-between;
-  }
-
-  .ha-navbar-logo {
-    height: 44px;
-    max-width: 155px;
-  }
-
-  .ha-top-bar {
-    display: none;
-  }
-
-  .ha-nav-menu,
-  .ha-post-btn {
-    display: none;
-  }
-
-  .mobile-toggle {
-    display: block;
-  }
-
-  .ha-hero-title {
-    font-size: 2.1rem;
-  }
-
-  .ha-search-tabs {
-    overflow-x: auto;
-  }
-
-  .ha-search-tab {
-    padding: 12px 14px;
-    font-size: 0.85rem;
-    white-space: nowrap;
-  }
-
-  .ha-search-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .btn-search {
-    width: 100%;
-    justify-content: center;
-  }
-
-  .ha-trust-grid {
-    grid-template-columns: 1fr;
-    gap: 16px;
-  }
-
-  .ha-trust-item {
-    border-right: none;
-    border-bottom: 1px solid var(--ha-gray-200);
-    padding-bottom: 14px;
-  }
-
-  .ha-categories-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .ha-projects-grid,
-  .ha-properties-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .ha-localities-grid {
-    grid-template-columns: 1fr;
+    padding: 28px 24px;
   }
 
   .ha-calc-card {
     grid-template-columns: 1fr;
-    padding: 20px;
-  }
-
-  .ha-footer-top {
-    grid-template-columns: 1fr;
-  }
-
-  .ha-footer-bottom {
-    flex-direction: column;
-    gap: 12px;
-    text-align: center;
+    padding: 26px;
+    gap: 28px;
   }
 }
+
+@media (max-width: 768px) {
+    .ha-top-bar,
+    .ha-post-btn {
+      display: none;
+    }
+
+
+      .ha-nav-inner {
+        height: 64px;
+      }
+
+      .ha-navbar-logo {
+        height: 42px;
+        max-width: 150px;
+      }
+
+        .ha-hero-wrap {
+          min-height: auto;
+          padding: 34px 0 42px;
+        }
+
+          .ha-hero-header {
+            margin-bottom: 22px;
+          }
+
+
+            .ha-hero-pill {
+              font-size: 0.75rem;
+              padding: 5px 14px;
+              line-height: 1.4;
+              max-width: 100%;
+            }
+
+            .ha-hero-title {
+              font-size: 1.95rem;
+            }
+
+            .ha-hero-subtitle {
+              font-size: 0.92rem;
+              line-height: 1.5;
+            }
+
+            .ha-search-tabs {
+              overflow-x: auto;
+              -webkit-overflow-scrolling: touch;
+              scrollbar-width: none;
+            }
+
+            .ha-search-tabs::-webkit-scrollbar {
+              display: none;
+            }
+
+            .ha-search-tab {
+              padding: 12px 14px;
+              font-size: 0.85rem;
+              white-space: nowrap;
+            }
+
+
+              .ha-search-body {
+                padding: 16px;
+              }
+
+
+                .ha-input,
+                .ha-select {
+                  font-size: 16px;
+                }
+
+                  .ha-section {
+                    padding: 40px 0;
+                  }
+
+                    .ha-section-header {
+                      flex-direction: column;
+                      align-items: flex-start;
+                      gap: 14px;
+                      margin-bottom: 22px;
+                    }
+
+                    .ha-section-title {
+                      font-size: 1.48rem;
+                    }
+
+                    .ha-categories-grid {
+                      grid-template-columns: repeat(2, 1fr);
+                      gap: 12px;
+                    }
+
+                    .ha-cat-card:last-child {
+                      grid-column: 1 / -1;
+                      display: grid;
+                      grid-template-columns: auto 1fr;
+                      column-gap: 14px;
+                      row-gap: 2px;
+                      align-items: center;
+                      text-align: left;
+                      padding: 16px 18px;
+                    }
+
+                    .ha-cat-card:last-child .ha-cat-icon {
+                      grid-row: 1 / span 2;
+                      margin-bottom: 0;
+                    }
+
+                    .ha-hubs-container {
+                      padding: 16px;
+                    }
+
+                    .ha-district-tabs {
+                      padding-bottom: 10px;
+                      margin-bottom: 14px;
+                      -webkit-overflow-scrolling: touch;
+                      scrollbar-width: none;
+                    }
+
+                    .ha-district-tabs::-webkit-scrollbar {
+                      display: none;
+                    }
+
+                    .ha-dist-btn {
+                      padding: 7px 14px;
+                      font-size: 0.84rem;
+                    }
+
+                    .ha-projects-grid,
+
+                      .ha-properties-grid,
+                      .ha-localities-grid {
+                        grid-template-columns: 1fr;
+                      }
+
+                        .ha-listings-filter-bar {
+                          padding: 12px;
+                          gap: 12px;
+                        }
+
+                        .ha-filter-pills {
+                          width: 100%;
+                          flex-wrap: nowrap;
+                          overflow-x: auto;
+                          padding-bottom: 4px;
+                          -webkit-overflow-scrolling: touch;
+                          scrollbar-width: none;
+                        }
+
+                        .ha-filter-pills::-webkit-scrollbar {
+                          display: none;
+                        }
+
+                        .ha-pill-btn {
+                          flex-shrink: 0;
+                          font-size: 0.82rem;
+                          padding: 7px 14px;
+                        }
+
+                        .ha-sort-control {
+                          width: 100%;
+                          justify-content: space-between;
+                          flex-wrap: wrap;
+                          gap: 8px;
+                        }
+
+                        .ha-sort-select {
+                          flex: 1;
+                          min-width: 165px;
+                          height: 40px;
+                        }
+
+                        .ha-nri-banner {
+                          padding: 24px 18px;
+                          gap: 24px;
+                        }
+
+                        .ha-nri-title {
+                          font-size: 1.55rem;
+                        }
+
+                        .ha-nri-perks {
+                          grid-template-columns: 1fr;
+                          gap: 10px;
+                        }
+
+                        .ha-nri-card-box {
+                          padding: 18px;
+                        }
+
+                        .ha-ad-wrapper {
+                          padding: 14px;
+                        }
+
+                        .ha-ad-header {
+                          flex-wrap: wrap;
+                          gap: 8px;
+                        }
+
+                        .ha-ad-creative {
+                          flex-direction: column;
+                          align-items: stretch;
+                          padding: 14px !important;
+                          gap: 14px;
+                        }
+
+                        .ha-ad-creative-title {
+                          font-size: 1.1rem !important;
+                        }
+
+                        .ha-ad-creative-right {
+                          width: 100%;
+                          flex-direction: column;
+                          align-items: stretch;
+                          gap: 10px;
+                        }
+
+                        .ha-ad-offer-pill {
+                          text-align: center;
+                          white-space: normal;
+                        }
+
+                        .ha-ad-cta-btn,
+                        .ha-ad-creative-right .btn {
+                          width: 100%;
+                          justify-content: center;
+                          white-space: normal;
+                        }
+
+                        .ha-video-meta {
+                          padding: 16px;
+                        }
+
+                        .ha-video-badge-row {
+                          flex-wrap: wrap;
+                        }
+
+                        .ha-video-active-title {
+                          font-size: 1.05rem;
+                        }
+
+                        .ha-video-playlist-box {
+                          padding: 14px;
+                        }
+
+                        .ha-advisor-section {
+                          padding: 40px 0;
+                        }
+
+                        .ha-advisor-card {
+                          padding: 22px 16px;
+                          gap: 24px;
+                          border-radius: var(--ha-radius-lg);
+                        }
+
+                        .ha-advisor-title {
+                          font-size: 1.48rem;
+                        }
+
+                        .ha-advisor-form-box {
+                          padding: 18px 16px;
+                        }
+
+                        .ha-calc-card {
+                          padding: 18px;
+                          gap: 22px;
+                        }
+
+                        .ha-footer {
+                          padding: 40px 0 24px;
+                        }
+
+                        .ha-footer-top {
+                          grid-template-columns: 1fr;
+                          gap: 28px;
+                          margin-bottom: 32px;
+                        }
+
+                        .ha-footer-bottom {
+                          flex-direction: column;
+                          gap: 12px;
+                          text-align: center;
+                        }
+                      }
+
+                      @media (max-width: 640px) {
+                        .ha-search-grid {
+                          grid-template-columns: 1fr;
+                          gap: 12px;
+                        }
+
+                        .ha-form-row,
+                        .ha-form-row-2-1,
+                        .ha-form-row-3 {
+                          grid-template-columns: 1fr;
+                          gap: 0;
+                          margin-bottom: 0;
+                        }
+
+                        .ha-modal-overlay {
+                          padding: 10px;
+                        }
+
+                        .ha-modal-box {
+                          padding: 22px 16px;
+                          max-height: 92dvh;
+                          border-radius: var(--ha-radius-md);
+                        }
+
+                        .ha-modal-box h3 {
+                          padding-right: 36px;
+                          font-size: 1.2rem !important;
+                        }
+
+                        .ha-modal-close {
+                          top: 12px;
+                          right: 12px;
+                        }
+
+                        .ha-toast {
+                          left: 14px;
+                          right: 14px;
+                          bottom: 14px;
+                          max-width: none;
+                        }
+                      }
+
+                      @media (max-width: 540px) {
+                        .ha-search-tabs {
+                          display: grid;
+                          grid-template-columns: repeat(2, 1fr);
+                          overflow-x: visible;
+                        }
+
+                        .ha-search-tab {
+                          padding: 11px 10px;
+                          font-size: 0.84rem;
+                          border-bottom-width: 2px;
+                          border-right: 1px solid var(--ha-gray-200);
+                        }
+
+                        .ha-search-tab:nth-child(2n) {
+                          border-right: none;
+                        }
+
+                        .ha-trust-grid {
+                          gap: 10px;
+                        }
+
+                        .ha-trust-item {
+                          flex-direction: column;
+                          align-items: flex-start;
+                          gap: 8px;
+                          padding: 12px;
+                        }
+
+                        .ha-trust-icon {
+                          width: 40px;
+                          height: 40px;
+                          font-size: 1.25rem;
+                        }
+
+                        .ha-trust-num {
+                          font-size: 1.2rem;
+                        }
+
+                        .ha-trust-lbl {
+                          font-size: 0.76rem;
+                          line-height: 1.35;
+                        }
+                      }
+
+                      @media (max-width: 480px) {
+                        .container {
+                          padding: 0 14px;
+                        }
+
+                        .btn {
+                          white-space: normal;
+                          text-align: center;
+                          line-height: 1.35;
+                        }
+
+                        .ha-hero-title {
+                          font-size: 1.62rem;
+                        }
+
+                        .ha-section {
+                          padding: 32px 0;
+                        }
+
+                        .ha-section-title {
+                          font-size: 1.32rem;
+                        }
+
+                        .ha-cat-card {
+                          padding: 16px 10px;
+                        }
+
+                        .ha-cat-icon {
+                          width: 46px;
+                          height: 46px;
+                          font-size: 1.45rem;
+                          margin-bottom: 10px;
+                        }
+
+                        .ha-cat-title {
+                          font-size: 0.94rem;
+                        }
+
+                        .ha-cat-count {
+                          font-size: 0.74rem;
+                        }
+
+                        .ha-project-thumb,
+                        .ha-prop-thumb {
+                          height: 195px;
+                        }
+
+                        .ha-project-body {
+                          padding: 20px 15px 15px;
+                        }
+
+                        .ha-prop-body {
+                          padding: 15px;
+                        }
+
+                        .ha-prop-top-badges {
+                          right: 54px;
+                          flex-direction: row;
+                          flex-wrap: wrap;
+                        }
+
+                        .ha-prop-title {
+                          height: auto;
+                          min-height: 2.6em;
+                        }
+
+                        .ha-prop-specs {
+                          display: grid;
+                          grid-template-columns: repeat(2, 1fr);
+                          gap: 8px 10px;
+                        }
+
+                        .ha-prop-footer {
+                          flex-direction: column;
+                          align-items: stretch;
+                          gap: 12px;
+                        }
+
+                        .ha-prop-actions {
+                          display: grid;
+                          grid-template-columns: 1fr 1fr;
+                          gap: 8px;
+                          width: 100%;
+                        }
+
+                        .ha-prop-actions .btn,
+                        .ha-prop-actions .btn-whatsapp {
+                          width: 100%;
+                          justify-content: center;
+                          padding: 9px 10px;
+                        }
+
+                        .ha-video-meta-footer {
+                          flex-direction: column;
+                          align-items: stretch;
+                        }
+
+                        .ha-video-meta-footer .btn {
+                          width: 100%;
+                        }
+
+                        .ha-video-thumb-wrap {
+                          width: 92px;
+                          height: 62px;
+                        }
+
+                        .ha-nri-banner {
+                          padding: 20px 14px;
+                        }
+
+                        .ha-nri-title {
+                          font-size: 1.38rem;
+                        }
+
+                        .ha-nri-banner .btn-primary {
+                          width: 100%;
+                        }
+
+                        .ha-advisor-cta-btn {
+                          width: 100%;
+                        }
+
+                        .ha-calc-result-box {
+                          padding: 18px 14px;
+                        }
+
+                        .ha-emi-amount {
+                          font-size: 1.9rem;
+                        }
+
+                        .ha-calc-row {
+                          flex-wrap: wrap;
+                          gap: 6px;
+                        }
+
+                        .ha-footer-newsletter {
+                          flex-direction: column;
+                        }
+
+                        .ha-footer-input {
+                          width: 100%;
+                        }
+
+                        .ha-footer-newsletter .btn {
+                          width: 100%;
+                        }
+
+                        .ha-shortlist-item {
+                          flex-direction: column;
+                          align-items: stretch;
+                          gap: 10px;
+                        }
+
+                        .ha-shortlist-thumb {
+                          width: 100%;
+                          height: 140px;
+                        }
+
+                        .ha-shortlist-btn {
+                          width: 100%;
+                        }
+                      }
+
+                      @media (max-width: 359px) {
+                        .ha-trust-grid {
+                          grid-template-columns: 1fr;
+                        }
+
+                        .ha-trust-item {
+                          flex-direction: row;
+                          align-items: center;
+                        }
+
+                        .ha-categories-grid {
+                          grid-template-columns: 1fr;
+                        }
+
+                        .ha-cat-card,
+                        .ha-cat-card:last-child {
+                          display: grid;
+                          grid-template-columns: auto 1fr;
+                          column-gap: 12px;
+                          row-gap: 2px;
+                          align-items: center;
+                          text-align: left;
+                          padding: 14px;
+                        }
+
+                        .ha-cat-icon,
+                        .ha-cat-card:last-child .ha-cat-icon {
+                          grid-row: 1 / span 2;
+                          margin-bottom: 0;
+                        }
+                      }

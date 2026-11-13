@@ -1,0 +1,1332 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bhoomika Land Bank – Kerala Real Estate & Land Portal | Buy, Sell, Develop, Connect</title>
+  <meta name="description"
+    content="Bhoomika Land Bank: Kerala's trusted property & land development portal. Buy, Sell, Develop & Connect. Verified plots, apartments, villas and direct owner properties across Kerala.">
+
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+
+  <!-- Master Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+  <!-- ==========================================================================
+       1. TOP UTILITY HEADER BAR
+       ========================================================================== -->
+  <div class="ha-top-bar">
+    <div class="container ha-top-bar-inner">
+      <div class="ha-top-left">
+        <div class="ha-city-selector">
+          <span>📍 District:</span>
+          <select id="topCitySelect" class="ha-city-select"
+            onchange="document.getElementById('searchCity').value=this.value; renderProperties();">
+            <option value="All">All Kerala</option>
+            <option value="Kochi" selected>Kochi (Ernakulam)</option>
+            <option value="Trivandrum">Thiruvananthapuram</option>
+            <option value="Kozhikode">Kozhikode (Calicut)</option>
+            <option value="Thrissur">Thrissur</option>
+            <option value="Kottayam">Kottayam</option>
+            <option value="Palakkad">Palakkad</option>
+            <option value="Alappuzha">Alappuzha</option>
+            <option value="Kannur">Kannur</option>
+          </select>
+        </div>
+        <span class="ha-top-pill">🌴 Kerala's #1 Property Network</span>
+      </div>
+
+      <div class="ha-top-right">
+        <a href="javascript:void(0)" onclick="openLandAdvisorModal()" class="ha-top-link" style="color: #FCD34D; font-weight: 700;">
+          <span>🤝</span> Become Land Advisor
+        </a>
+        <a href="#nriSection" class="ha-top-link">
+          <span>🌐</span> NRI Desk
+        </a>
+        <a href="javascript:void(0)" onclick="openPostModal()" class="ha-top-link">
+          <span>📋</span> Post Requirement
+        </a>
+        <a href="javascript:void(0)" onclick="openShortlistModal()" class="ha-top-link">
+          <span>♥ Shortlist</span>
+          <span class="ha-count-badge" id="shortlistBadge">0</span>
+        </a>
+        <button class="ha-top-link" onclick="openAuthModal()" style="background:none; border:none; cursor:pointer;">
+          <span>👤 Sign In / Register</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       2. MAIN NAVIGATION HEADER
+       ========================================================================== -->
+  <header class="ha-main-header">
+    <div class="container ha-nav-inner">
+      <!-- Brand Logo -->
+        <a href="#home" class="ha-brand" title="Bhoomika Land Bank - Kerala Real Estate Portal">
+          <img src="bhoomika_logo.jpg" alt="Bhoomika Land Bank - Buy Sell Develop Connect" class="ha-navbar-logo">
+        </a>
+
+        <!-- Navigation Menu -->
+        <nav>
+          <ul class="ha-nav-menu">
+            <li class="ha-nav-item"><a href="#home" class="active">Home</a></li>
+            <li class="ha-nav-item"><a href="#verifiedListingsSection"
+                onclick="setSearchTab('Buy', document.querySelector('.ha-search-tab:nth-child(1)'))">Buy</a></li>
+            <li class="ha-nav-item"><a href="#verifiedListingsSection"
+                onclick="setSearchTab('Rent', document.querySelector('.ha-search-tab:nth-child(2)'))">Rent</a></li>
+            <li class="ha-nav-item"><a href="#verifiedListingsSection"
+                onclick="setSearchTab('Plots', document.querySelector('.ha-search-tab:nth-child(3)'))">Plots & Land</a>
+            </li>
+            <li class="ha-nav-item"><a href="#featuredProjectsSection">New Projects</a></li>
+            <li class="ha-nav-item"><a href="#videoToursSection">Video Tours</a></li>
+            <li class="ha-nav-item"><a href="#landAdvisorSection">Land Advisor</a></li>
+            <li class="ha-nav-item"><a href="#calculatorSection">Home Loans</a></li>
+          </ul>
+        </nav>
+
+        <!-- Post Property CTA -->
+        <div style="display: flex; align-items: center; gap: 14px;">
+          <button class="ha-post-btn" onclick="openPostModal()">
+            <span>+ Post Property</span>
+            <span class="ha-free-tag">Free</span>
+          </button>
+          <button class="mobile-toggle" onclick="alert('Menu items: Buy, Rent, Plots, Projects, Home Loans')">☰</button>
+        </div>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       3. HERO BANNER & MULTI-TAB SEARCH CONSOLE
+       ========================================================================== -->
+  <section class="ha-hero-wrap" id="home">
+    <!-- Vivid Kerala Architecture Background -->
+    <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=2000&q=85"
+      alt="Kerala Real Estate Properties" class="ha-hero-bg-img">
+    <div class="ha-hero-overlay"></div>
+
+    <div class="container ha-hero-content">
+      <div class="ha-hero-header">
+        <div class="ha-hero-pill">
+          <span class="ha-dot-pulse"></span>
+          <span>100% RERA Verified & Direct Owner Properties Across Kerala</span>
+        </div>
+        <h1 class="ha-hero-title">
+          Find Your Dream Property In <span>Kerala</span>
+        </h1>
+        <p class="ha-hero-subtitle">
+          Explore luxury apartments in Marine Drive, serene gated villas in Kakkanad & Kowdiar, and verified commercial
+          land parcels.
+        </p>
+      </div>
+
+      <!-- Multi-Tab Search Console -->
+      <div class="ha-search-card">
+        <!-- Transaction Mode Tabs -->
+        <div class="ha-search-tabs">
+          <button class="ha-search-tab active" onclick="setSearchTab('Buy', this)">
+            <span>🏠</span> Buy Properties
+          </button>
+          <button class="ha-search-tab" onclick="setSearchTab('Rent', this)">
+            <span>🔑</span> Rent Homes
+          </button>
+          <button class="ha-search-tab" onclick="setSearchTab('Plots', this)">
+            <span>📐</span> Plots & Land
+          </button>
+          <button class="ha-search-tab" onclick="setSearchTab('Commercial', this)">
+            <span>🏢</span> Commercial
+          </button>
+        </div>
+
+        <!-- Search Fields Form -->
+        <div class="ha-search-body">
+          <form
+            onsubmit="event.preventDefault(); renderProperties(); document.getElementById('verifiedListingsSection').scrollIntoView({behavior: 'smooth'});">
+            <div class="ha-search-grid">
+              <!-- District Dropdown -->
+              <div class="ha-field">
+                <label class="ha-field-label">District / City</label>
+                <div class="ha-input-wrap">
+                  <span class="ha-input-icon">📍</span>
+                  <select id="searchCity" class="ha-select" onchange="renderProperties()">
+                    <option value="">All Kerala Districts</option>
+                    <option value="Kochi" selected>Kochi (Ernakulam)</option>
+                    <option value="Trivandrum">Thiruvananthapuram</option>
+                    <option value="Kozhikode">Kozhikode (Calicut)</option>
+                    <option value="Thrissur">Thrissur</option>
+                    <option value="Kottayam">Kottayam</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Locality / Landmark Search -->
+              <div class="ha-field">
+                <label class="ha-field-label">Locality / Landmark</label>
+                <div class="ha-input-wrap">
+                  <span class="ha-input-icon">🔍</span>
+                  <input type="text" id="searchKeyword" class="ha-input"
+                    placeholder="e.g. Kakkanad, Infopark, Kowdiar, Edappally..." oninput="renderProperties()">
+                </div>
+              </div>
+
+              <!-- Property Type -->
+              <div class="ha-field">
+                <label class="ha-field-label">Property Type</label>
+                <div class="ha-input-wrap">
+                  <span class="ha-input-icon">🏢</span>
+                  <select id="searchType" class="ha-select" onchange="renderProperties()">
+                    <option value="All">All Types</option>
+                    <option value="Apartment">Apartment / Flat</option>
+                    <option value="Villa">Independent Villa</option>
+                    <option value="Plot">Residential Plot</option>
+                    <option value="Commercial">Commercial Space</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Budget Range -->
+              <div class="ha-field">
+                <label class="ha-field-label">Max Budget</label>
+                <div class="ha-input-wrap">
+                  <span class="ha-input-icon">💰</span>
+                  <select id="searchBudget" class="ha-select" onchange="renderProperties()">
+                    <option value="">Any Budget</option>
+                    <option value="5000000">Up to ₹50 Lakhs</option>
+                    <option value="10000000">Up to ₹1 Crore</option>
+                    <option value="20000000">Up to ₹2 Crores</option>
+                    <option value="50000000">Up to ₹5 Crores</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Submit Button -->
+              <button type="submit" class="btn-search">
+                <span>🔍 Search</span>
+              </button>
+            </div>
+
+            <!-- Footer: BHK Chips & Quick Toggles -->
+            <div class="ha-search-footer">
+              <!-- BHK Selector -->
+              <div class="ha-bhk-pills" id="bhkSelectorRow">
+                <span class="ha-bhk-label">BHK:</span>
+                <button type="button" class="ha-bhk-chip active" onclick="setBHKChip('All', this)">All</button>
+                <button type="button" class="ha-bhk-chip" onclick="setBHKChip('1', this)">1 BHK</button>
+                <button type="button" class="ha-bhk-chip" onclick="setBHKChip('2', this)">2 BHK</button>
+                <button type="button" class="ha-bhk-chip" onclick="setBHKChip('3', this)">3 BHK</button>
+                <button type="button" class="ha-bhk-chip" onclick="setBHKChip('4+', this)">4+ BHK</button>
+              </div>
+
+              <!-- Quick Toggles -->
+              <div class="ha-quick-checks">
+                <label class="ha-check-label">
+                  <input type="checkbox" id="chkDirectOwner" onchange="renderProperties()">
+                  <span>Direct Owner (0% Brokerage)</span>
+                </label>
+                <label class="ha-check-label">
+                  <input type="checkbox" id="chkVerified" onchange="renderProperties()">
+                  <span>RERA Verified</span>
+                </label>
+                <label class="ha-check-label">
+                  <input type="checkbox" id="chkReadyToMove" onchange="renderProperties()">
+                  <span>Ready to Move</span>
+                </label>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       4. TRUST STATS STRIP
+       ========================================================================== -->
+  <div class="ha-trust-strip">
+    <div class="container ha-trust-grid">
+      <div class="ha-trust-item">
+        <div class="ha-trust-icon">🏠</div>
+        <div>
+          <div class="ha-trust-num">12,500+</div>
+          <div class="ha-trust-lbl">Active Verified Listings</div>
+        </div>
+      </div>
+      <div class="ha-trust-item">
+        <div class="ha-trust-icon">🤝</div>
+        <div>
+          <div class="ha-trust-num">4,200+</div>
+          <div class="ha-trust-lbl">Direct Owner Homes (0% Brokerage)</div>
+        </div>
+      </div>
+      <div class="ha-trust-item">
+        <div class="ha-trust-icon">📍</div>
+        <div>
+          <div class="ha-trust-num">14 Districts</div>
+          <div class="ha-trust-lbl">Comprehensive Kerala Coverage</div>
+        </div>
+      </div>
+      <div class="ha-trust-item">
+        <div class="ha-trust-icon">🏗️</div>
+        <div>
+          <div class="ha-trust-num">85+ Builders</div>
+          <div class="ha-trust-lbl">RERA Approved Top Developers</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       5. PROPERTY CATEGORY SHORTCUTS
+       ========================================================================== -->
+  <section class="ha-section">
+    <div class="container">
+      <div class="ha-section-header">
+        <div>
+          <span class="ha-section-tag">Explore By Category</span>
+          <h2 class="ha-section-title">Kerala Property Segments</h2>
+          <p class="ha-section-sub">Discover pre-screened properties catering to your specific living and investment
+            requirements.</p>
+        </div>
+      </div>
+
+      <div class="ha-categories-grid">
+        <div class="ha-cat-card"
+          onclick="setCategoryFilter('Apartments', document.querySelector('.ha-pill-btn:nth-child(5)')); document.getElementById('verifiedListingsSection').scrollIntoView({behavior:'smooth'});">
+          <div class="ha-cat-icon">🏢</div>
+          <h3 class="ha-cat-title">Flats & Apartments</h3>
+          <span class="ha-cat-count">1,450+ Verified Units</span>
+        </div>
+
+        <div class="ha-cat-card"
+          onclick="setCategoryFilter('Villas', document.querySelector('.ha-pill-btn:nth-child(4)')); document.getElementById('verifiedListingsSection').scrollIntoView({behavior:'smooth'});">
+          <div class="ha-cat-icon">🏡</div>
+          <h3 class="ha-cat-title">Luxury & Budget Villas</h3>
+          <span class="ha-cat-count">680+ Gated Homes</span>
+        </div>
+
+        <div class="ha-cat-card"
+          onclick="setCategoryFilter('Plots', document.querySelector('.ha-pill-btn:nth-child(6)')); document.getElementById('verifiedListingsSection').scrollIntoView({behavior:'smooth'});">
+          <div class="ha-cat-icon">📐</div>
+          <h3 class="ha-cat-title">Residential Plots</h3>
+          <span class="ha-cat-count">950+ Clear Title Parcels</span>
+        </div>
+
+        <div class="ha-cat-card"
+          onclick="setSearchTab('Commercial', document.querySelector('.ha-search-tab:nth-child(4)')); document.getElementById('verifiedListingsSection').scrollIntoView({behavior:'smooth'});">
+          <div class="ha-cat-icon">🏬</div>
+          <h3 class="ha-cat-title">Commercial Spaces</h3>
+          <span class="ha-cat-count">420+ Offices & Shops</span>
+        </div>
+
+        <div class="ha-cat-card"
+          onclick="setSearchTab('Rent', document.querySelector('.ha-search-tab:nth-child(2)')); document.getElementById('verifiedListingsSection').scrollIntoView({behavior:'smooth'});">
+          <div class="ha-cat-icon">🔑</div>
+          <h3 class="ha-cat-title">Verified Rentals</h3>
+          <span class="ha-cat-count">1,850+ Homes for Lease</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       6. TRENDING KERALA REAL ESTATE HUBS (DISTRICTS & LOCALITIES)
+       ========================================================================== -->
+  <section class="ha-section" id="hubsSection"
+    style="background-color: #FFFFFF; border-top: 1px solid #E2E8F0; border-bottom: 1px solid #E2E8F0;">
+    <div class="container">
+      <div class="ha-section-header">
+        <div>
+          <span class="ha-section-tag">Major Kerala Hubs</span>
+          <h2 class="ha-section-title">Trending Localities Across Prime Cities</h2>
+          <p class="ha-section-sub">Explore thriving neighborhoods with tech parks, metro connectivity, and strong
+            capital appreciation.</p>
+        </div>
+      </div>
+
+      <div class="ha-hubs-container">
+        <!-- City Selector Tabs -->
+        <div class="ha-district-tabs">
+          <button class="ha-dist-btn active" onclick="setDistrictTab('Kochi', this)">Kochi (Ernakulam)</button>
+          <button class="ha-dist-btn" onclick="setDistrictTab('Trivandrum', this)">Thiruvananthapuram</button>
+          <button class="ha-dist-btn" onclick="setDistrictTab('Kozhikode', this)">Kozhikode (Calicut)</button>
+          <button class="ha-dist-btn" onclick="setDistrictTab('Thrissur', this)">Thrissur (Cultural Capital)</button>
+        </div>
+
+        <!-- Localities Grid (Populated dynamically) -->
+        <div class="ha-localities-grid" id="districtLocalitiesGrid">
+          <!-- Rendered by app.js -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       7. FEATURED RERA-APPROVED PROJECTS (BUILDER SPOTLIGHT)
+       ========================================================================== -->
+  <section class="ha-section" id="featuredProjectsSection">
+    <div class="container">
+      <div class="ha-section-header">
+        <div>
+          <span class="ha-section-tag">Builder Spotlight</span>
+          <h2 class="ha-section-title">Featured RERA-Approved Projects</h2>
+          <p class="ha-section-sub">Pre-launch, ongoing, and ready-to-move projects from Kerala's most trusted
+            developers.</p>
+        </div>
+        <button class="btn btn-outline btn-sm" onclick="alert('Viewing all ongoing Kerala RERA developments.')">
+          View All Projects ›
+        </button>
+      </div>
+
+      <div class="ha-projects-grid">
+        <!-- Project 1: Asset Homes -->
+        <div class="ha-project-card">
+          <div class="ha-project-thumb">
+            <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=800&q=80"
+              alt="Asset Rhythm Kakkanad" class="ha-project-img">
+            <div class="ha-project-badges">
+              <span class="badge badge-rera">✓ K-RERA Approved</span>
+              <span class="badge badge-ready">Under Construction</span>
+            </div>
+            <div class="ha-builder-logo">ASSET</div>
+          </div>
+          <div class="ha-project-body">
+            <h3 class="ha-project-title">Asset Rhythm Luxury Residences</h3>
+            <div class="ha-project-builder">By Asset Homes Pvt Ltd</div>
+            <div class="ha-project-loc">📍 Infopark Expressway, Kakkanad, Kochi</div>
+            <div class="ha-project-specs">
+              <span>2 & 3 BHK Luxury</span>
+              <span>1,240 - 1,890 sq.ft</span>
+              <span>Pos: Dec 2026</span>
+            </div>
+            <div class="ha-project-price-row">
+              <div>
+                <div class="ha-price-val">₹74.5 Lakhs*</div>
+                <div class="ha-price-sub">Starting Price (Excl. Reg)</div>
+              </div>
+              <button class="btn btn-sm btn-primary"
+                onclick="alert('Brochure requested for Asset Rhythm. Our relationship manager will WhatsApp you the project details.')">
+                Brochure 📥
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 2: Skyline Builders -->
+        <div class="ha-project-card">
+          <div class="ha-project-thumb">
+            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80"
+              alt="Skyline Imperial Kowdiar" class="ha-project-img">
+            <div class="ha-project-badges">
+              <span class="badge badge-rera">✓ K-RERA Approved</span>
+              <span class="badge badge-owner">Ready to Move</span>
+            </div>
+            <div class="ha-builder-logo">SKYLINE</div>
+          </div>
+          <div class="ha-project-body">
+            <h3 class="ha-project-title">Skyline Imperial Court</h3>
+            <div class="ha-project-builder">By Skyline Builders (Kerala's #1)</div>
+            <div class="ha-project-loc">📍 Kowdiar Royal Avenue, Trivandrum</div>
+            <div class="ha-project-specs">
+              <span>3 & 4 BHK Royal</span>
+              <span>2,100 - 3,200 sq.ft</span>
+              <span>Ready for Living</span>
+            </div>
+            <div class="ha-project-price-row">
+              <div>
+                <div class="ha-price-val">₹1.85 Crores*</div>
+                <div class="ha-price-sub">Ultra Luxury Specification</div>
+              </div>
+              <button class="btn btn-sm btn-primary" onclick="alert('Brochure requested for Skyline Imperial Court.')">
+                Brochure 📥
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 3: Sobha Limited -->
+        <div class="ha-project-card">
+          <div class="ha-project-thumb">
+            <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=800&q=80"
+              alt="Sobha Silver Star Marine Drive" class="ha-project-img">
+            <div class="ha-project-badges">
+              <span class="badge badge-rera">✓ K-RERA Approved</span>
+              <span class="badge badge-featured">Waterfront Iconic</span>
+            </div>
+            <div class="ha-builder-logo">SOBHA</div>
+          </div>
+          <div class="ha-project-body">
+            <h3 class="ha-project-title">Sobha Waterfront Penthouses</h3>
+            <div class="ha-project-builder">By Sobha Limited</div>
+            <div class="ha-project-loc">📍 Marine Drive Walkway, Kochi</div>
+            <div class="ha-project-specs">
+              <span>3 & 4 BHK Arabian Sea View</span>
+              <span>2,650 - 4,100 sq.ft</span>
+              <span>Pos: Mid 2027</span>
+            </div>
+            <div class="ha-project-price-row">
+              <div>
+                <div class="ha-price-val">₹2.40 Crores*</div>
+                <div class="ha-price-sub">German Engineering Precision</div>
+              </div>
+              <button class="btn btn-sm btn-primary" onclick="alert('Brochure requested for Sobha Waterfront.')">
+                Brochure 📥
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       ADVERTISEMENT SPACE: LEADERBOARD BANNER (IAB 970x120 / Responsive)
+       ========================================================================== -->
+  <section class="ha-ad-section" id="leaderboardAdSection">
+    <div class="container">
+      <div class="ha-ad-wrapper">
+        <div class="ha-ad-header">
+          <span class="ha-ad-badge">Sponsored Advertisement</span>
+          <a href="javascript:void(0)" onclick="alert('Bhoomika Ad Desk:\n\nReach 85,000+ high-net-worth Kerala property buyers and NRI investors monthly.\n\nEmail: ads@bhoomikarealhomes.com | Call: +91 98470 12345')" class="ha-ad-partner-link">Advertise With Us ↗</a>
+        </div>
+        
+        <!-- Ad Banner Container: Ready for Google AdSense or Custom Partner Banners -->
+        <!-- To place Google AdSense here, replace the .ha-ad-creative block with your <ins class="adsbygoogle" ...></ins> -->
+        <div class="ha-ad-banner" id="adSlotLeaderboard">
+          <div class="ha-ad-creative">
+            <div class="ha-ad-creative-left">
+              <span class="ha-ad-partner-tag">🏦 Preferred Banking Partner</span>
+              <h3 class="ha-ad-creative-title">Kerala Home Loans Starting @ 8.35% p.a.*</h3>
+              <p class="ha-ad-creative-desc">Instant digital sanction for NRIs & residents. 0% processing fee on Bhoomika RERA-verified projects.</p>
+            </div>
+            <div class="ha-ad-creative-right">
+              <div class="ha-ad-offer-pill">⚡ Limited Festive Concession</div>
+              <a href="#calculatorSection" class="btn btn-sm btn-primary ha-ad-cta-btn">Calculate EMI & Apply →</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       8. VERIFIED LISTINGS DECK & FILTER BAR
+       ========================================================================== -->
+  <section class="ha-section" id="verifiedListingsSection"
+    style="background-color: #FFFFFF; border-top: 1px solid #E2E8F0;">
+    <div class="container">
+      <div class="ha-section-header">
+        <div>
+          <span class="ha-section-tag">Direct From Owners & Builders</span>
+          <h2 class="ha-section-title">Verified Properties in Kerala</h2>
+          <p class="ha-section-sub">Physical on-site verified title documents, clear survey boundaries, and 0% brokerage
+            options.</p>
+        </div>
+        <button class="btn btn-outline btn-sm" onclick="resetAllFilters()">
+          Reset Filters ⟳
+        </button>
+      </div>
+
+      <!-- Listings Toolbar Filter Bar -->
+      <div class="ha-listings-filter-bar">
+        <div class="ha-filter-pills">
+          <button class="ha-pill-btn active" onclick="setCategoryFilter('All', this)">All Listings</button>
+          <button class="ha-pill-btn" onclick="setCategoryFilter('Owner', this)">Direct Owner (0% Brokerage)</button>
+          <button class="ha-pill-btn" onclick="setCategoryFilter('Ready', this)">Ready to Move</button>
+          <button class="ha-pill-btn" onclick="setCategoryFilter('Villas', this)">Independent Villas</button>
+          <button class="ha-pill-btn" onclick="setCategoryFilter('Apartments', this)">Flats & Apartments</button>
+          <button class="ha-pill-btn" onclick="setCategoryFilter('Plots', this)">Plots & Land</button>
+        </div>
+
+        <div class="ha-sort-control">
+          <span style="font-size: 0.84rem; color: #64748B;" id="resultsCounter">Loading properties...</span>
+          <select id="sortBy" class="ha-sort-select" onchange="renderProperties()">
+            <option value="featured">Sort by: Featured First</option>
+            <option value="price-asc">Price: Low to High</option>
+            <option value="price-desc">Price: High to Low</option>
+            <option value="area-desc">Area: Largest First</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Dynamic Properties Grid (Rendered by app.js) -->
+      <div class="ha-properties-grid" id="propertiesGrid">
+        <!-- Rendered by app.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       9. YOUTUBE VIDEO SHOWCASE: PROPERTY VIDEO TOURS & BHOOMIKA TV
+       ========================================================================== -->
+  <section class="ha-section ha-video-section" id="videoToursSection">
+    <div class="container">
+      <div class="ha-section-header">
+        <div>
+          <span class="ha-section-tag">▶ Bhoomika TV • YouTube Channel</span>
+          <h2 class="ha-section-title">Kerala Property Video Tours & Aerial Walkthroughs</h2>
+          <p class="ha-section-sub">Experience immersive 4K video tours of premier waterfront flats, luxury gated villas, and development land plots across Kerala.</p>
+        </div>
+        <a href="https://www.youtube.com" target="_blank" class="btn-youtube-subscribe">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          <span>Subscribe to Channel</span>
+        </a>
+      </div>
+
+      <div class="ha-video-layout">
+        <!-- Main Featured Video Player Card -->
+        <div class="ha-video-player-card">
+          <!-- Responsive 16:9 YouTube Player -->
+          <div class="ha-video-iframe-wrap">
+            <iframe
+              id="mainYoutubePlayer"
+              src="https://www.youtube-nocookie.com/embed/ScMzIvxBSi4?rel=0"
+              title="Kerala Property Video Walkthrough - Bhoomika Land Bank"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen>
+            </iframe>
+          </div>
+
+          <!-- Video Metadata Box -->
+          <div class="ha-video-meta">
+            <div class="ha-video-badge-row">
+              <span class="ha-video-live-badge">HD Walkthrough</span>
+              <span class="ha-video-location-tag" id="activeVideoLocation">📍 Marine Drive, Kochi</span>
+            </div>
+            <h3 class="ha-video-active-title" id="activeVideoTitle">
+              Asset Senate 3 BHK Luxury Waterfront Apartment Walkthrough
+            </h3>
+            <div class="ha-video-meta-footer">
+              <span class="ha-video-meta-stats" id="activeVideoStats">24,500 views • 4K Ultra HD • RERA Approved</span>
+              <button class="btn btn-sm btn-outline" style="color: #FFFFFF; border-color: #475569;" onclick="openContactModal('prop-1')">
+                Enquire This Property
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Video Playlist / Selector -->
+        <div class="ha-video-playlist-box">
+          <div class="ha-video-playlist-header">
+            <h4>Featured Video Tours (4)</h4>
+            <span style="font-size: 0.76rem; color: #64748B;">Tap to switch video</span>
+          </div>
+
+          <div class="ha-video-playlist-items">
+            <!-- Video 1 -->
+            <div class="ha-video-item active" onclick="switchYoutubeVideo('ScMzIvxBSi4', 'Asset Senate 3 BHK Luxury Waterfront Apartment Walkthrough', 'Marine Drive, Kochi', '24,500 views • 4K Ultra HD • RERA Approved', this)">
+              <div class="ha-video-thumb-wrap">
+                <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=400&q=80" alt="Asset Senate Video">
+                <span class="ha-video-duration">5:42</span>
+                <div class="ha-video-thumb-play">▶</div>
+              </div>
+              <div class="ha-video-item-info">
+                <div class="ha-video-item-title">Asset Senate 3 BHK Waterfront Luxury</div>
+                <div class="ha-video-item-meta">📍 Marine Drive, Kochi</div>
+                <div class="ha-video-item-meta">24.5K views • 5:42</div>
+              </div>
+            </div>
+
+            <!-- Video 2 -->
+            <div class="ha-video-item" onclick="switchYoutubeVideo('jNQXAC9IVRw', 'Prestige Eden Garden Gated Luxury Villa & Private Lawn Tour', 'Kowdiar, Trivandrum', '18,200 views • 4K Ultra HD • Ready to Move', this)">
+              <div class="ha-video-thumb-wrap">
+                <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=400&q=80" alt="Prestige Eden Villa Video">
+                <span class="ha-video-duration">7:15</span>
+                <div class="ha-video-thumb-play">▶</div>
+              </div>
+              <div class="ha-video-item-info">
+                <div class="ha-video-item-title">Prestige Eden Garden 4 BHK Luxury Villa</div>
+                <div class="ha-video-item-meta">📍 Kowdiar, Trivandrum</div>
+                <div class="ha-video-item-meta">18.2K views • 7:15</div>
+              </div>
+            </div>
+
+            <!-- Video 3 -->
+            <div class="ha-video-item" onclick="switchYoutubeVideo('kJQP7kiw5Fk', '12 Cents Prime Roadfront Plots & Smart City Drone Connectivity', 'Kakkanad, Ernakulam', '31,800 views • Aerial Drone View • Freehold Title', this)">
+              <div class="ha-video-thumb-wrap">
+                <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=400&q=80" alt="Kakkanad Plots Drone Video">
+                <span class="ha-video-duration">4:30</span>
+                <div class="ha-video-thumb-play">▶</div>
+              </div>
+              <div class="ha-video-item-info">
+                <div class="ha-video-item-title">12 Cents Roadfront Plots & Smart City Drone View</div>
+                <div class="ha-video-item-meta">📍 Kakkanad, Ernakulam</div>
+                <div class="ha-video-item-meta">31.8K views • 4:30</div>
+              </div>
+            </div>
+
+            <!-- Video 4 -->
+            <div class="ha-video-item" onclick="switchYoutubeVideo('fJ9rUzIMcZQ', 'Complete NRI Property Buying & Legal Title Verification Guide', 'Kerala All 14 Districts', '42,100 views • Educational Guide • Legal Desk', this)">
+              <div class="ha-video-thumb-wrap">
+                <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=400&q=80" alt="NRI Real Estate Guide Video">
+                <span class="ha-video-duration">9:18</span>
+                <div class="ha-video-thumb-play">▶</div>
+              </div>
+              <div class="ha-video-item-info">
+                <div class="ha-video-item-title">NRI Real Estate Guide & Title Scrutiny 2026</div>
+                <div class="ha-video-item-meta">🌐 Bhoomika NRI Desk</div>
+                <div class="ha-video-item-meta">42.1K views • 9:18</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       10. KERALA NRI CORNER & INVESTOR HUB
+       ========================================================================== -->
+  <section class="ha-section" id="nriSection">
+    <div class="container">
+      <div class="ha-nri-banner">
+        <div>
+          <span class="ha-nri-badge">🌐 Dedicated Expatriate Desk</span>
+          <h2 class="ha-nri-title">
+            Investing in Kerala From <span>GCC, US or UK?</span>
+          </h2>
+          <p class="ha-nri-desc">
+            Bhoomika Land Bank NRI Desk provides seamless, end-to-end property solutions for non-resident Keralites: from
+            digital Power of Attorney and legal title scrutiny to guaranteed tenant placement.
+          </p>
+          <div class="ha-nri-perks">
+            <div class="ha-nri-perk"><span class="check">✔</span> NRI Home Loans with SBI & Federal Bank</div>
+            <div class="ha-nri-perk"><span class="check">✔</span> 100% Legal Document & Encumbrance Verification</div>
+            <div class="ha-nri-perk"><span class="check">✔</span> Periodic Video Drone Surveys & Site Inspections</div>
+            <div class="ha-nri-perk"><span class="check">✔</span> Hassle-Free Rental Property Management</div>
+          </div>
+          <button class="btn btn-primary"
+            onclick="alert('Our Senior NRI Advisor will connect with you on WhatsApp with complete investment guidance.')">
+            Connect With NRI Specialist ›
+          </button>
+        </div>
+
+        <div class="ha-nri-card-box">
+          <h3 class="ha-nri-card-title">Schedule a Virtual Site Tour</h3>
+          <p style="font-size: 0.85rem; color: #CBD5E1; margin-bottom: 16px;">
+            Book a 1-on-1 live video walkthrough of your shortlisted property with our certified Kerala property
+            executive.
+          </p>
+          <form
+            onsubmit="event.preventDefault(); alert('Virtual site visit scheduled! Check your WhatsApp for zoom invitation.');">
+            <input type="text" class="ha-input" placeholder="Your Name" required style="margin-bottom: 10px;">
+            <input type="tel" class="ha-input" placeholder="WhatsApp Number (with country code)" required
+              style="margin-bottom: 10px;">
+            <select class="ha-select" style="margin-bottom: 14px;">
+              <option>Kochi Marine Drive Properties</option>
+              <option>Kakkanad Infopark Villas</option>
+              <option>Trivandrum Kowdiar Apartments</option>
+              <option>Wayanad Coffee Estates</option>
+            </select>
+            <button type="submit" class="btn btn-white btn-sm" style="width: 100%;">
+              Book Live Video Tour Now
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       ADVERTISEMENT SPACE: SECONDARY SPONSOR BILLBOARD
+       ========================================================================== -->
+  <section class="ha-ad-section" style="padding: 16px 0; background-color: #F8FAFC;">
+    <div class="container">
+      <div class="ha-ad-wrapper" style="background: linear-gradient(135deg, #0F3E32 0%, #082F26 100%); border-color: rgba(201, 164, 92, 0.4);">
+        <div class="ha-ad-header" style="border-bottom-color: rgba(255, 255, 255, 0.15);">
+          <span class="ha-ad-badge" style="background: rgba(201, 164, 92, 0.25); color: #FCD34D;">⭐ Featured Developer Partner</span>
+          <a href="javascript:void(0)" onclick="alert('Bhoomika Ad Sales:\n\nFeature your upcoming project or service here.\nContact: ads@bhoomikarealhomes.com')" class="ha-ad-partner-link" style="color: #FCD34D;">Book This Ad Slot ↗</a>
+        </div>
+        <div class="ha-ad-banner" style="background: transparent; border: none; min-height: 85px;">
+          <div class="ha-ad-creative" style="padding: 12px 18px;">
+            <div class="ha-ad-creative-left">
+              <span class="ha-ad-partner-tag" style="color: #FCD34D;">Exclusive Pre-Launch Opportunity</span>
+              <h3 class="ha-ad-creative-title" style="color: #FFFFFF; font-size: 1.2rem;">Sobha Waterfront Sky Villas — Marine Drive, Kochi</h3>
+              <p class="ha-ad-creative-desc" style="color: #CBD5E1;">Ultra-luxury 4 BHK duplex sky homes with private infinity splash pools. Exclusive pre-launch pricing.</p>
+            </div>
+            <div class="ha-ad-creative-right">
+              <button class="btn btn-sm" style="background: #C9A45C; color: #0F172A; font-weight: 800; border: none; cursor: pointer; padding: 10px 20px; border-radius: 8px;" onclick="alert('Priority invitation requested for Sobha Waterfront Sky Villas.')">
+                Register VIP Interest →
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       11. LAND ADVISOR NETWORK & REGISTRATION SHOWCASE
+       ========================================================================== -->
+  <section class="ha-advisor-section" id="landAdvisorSection">
+    <div class="container">
+      <div class="ha-advisor-card">
+        <div class="ha-advisor-content">
+          <div class="ha-advisor-badge-row">
+            <span class="ha-advisor-badge">🤝 Bhoomika Partner Network</span>
+            <span class="ha-advisor-tag">Earn High Commissions</span>
+          </div>
+          <h2 class="ha-advisor-title">Become a Certified Bhoomika Land Advisor</h2>
+          <p class="ha-advisor-desc">
+            Are you a local property consultant, licensed RERA agent, land surveyor, or real estate advisor in Kerala? 
+            Partner with Bhoomika Land Bank to access pre-verified NRI buyer leads, institutional developers, clear-title land mandates, and transparent closing commissions.
+          </p>
+
+          <!-- Perks Grid -->
+          <div class="ha-advisor-perks">
+            <div class="ha-advisor-perk-item">
+              <span class="ha-perk-icon">💼</span>
+              <div>
+                <strong>High Commission Slabs</strong>
+                <span>Earn industry-leading referral and transaction incentives on land acquisitions & plot sales.</span>
+              </div>
+            </div>
+            <div class="ha-advisor-perk-item">
+              <span class="ha-perk-icon">🌐</span>
+              <div>
+                <strong>Pre-Qualified NRI Leads</strong>
+                <span>Direct access to high-ticket GCC, US, and UK Malayali buyers actively seeking verified land.</span>
+              </div>
+            </div>
+            <div class="ha-advisor-perk-item">
+              <span class="ha-perk-icon">📜</span>
+              <div>
+                <strong>Full Legal & Survey Support</strong>
+                <span>Get complete title scrutiny, revenue sketch demarcations, and RERA compliance backing.</span>
+              </div>
+            </div>
+          </div>
+
+          <div style="margin-top: 24px; display: flex; align-items: center; gap: 14px; flex-wrap: wrap;">
+            <button class="btn btn-primary" onclick="openLandAdvisorModal()" style="padding: 12px 24px;">
+              ✍️ Open Detailed Registration Form
+            </button>
+            <span style="font-size: 0.82rem; color: #64748B;">⚡ Instant onboarding • Free verification badge</span>
+          </div>
+        </div>
+
+        <!-- Fast-Track Advisor Registration Form -->
+        <div class="ha-advisor-form-side">
+          <div class="ha-advisor-form-box">
+            <div class="ha-advisor-form-header">
+              <h3>Fast-Track Advisor Registration</h3>
+              <p>Join 450+ verified land advisors across 14 Kerala districts</p>
+            </div>
+
+            <form onsubmit="handleLandAdvisorSubmit(event, this)">
+              <div class="ha-form-group">
+                <label class="ha-field-label">Full Name *</label>
+                <input type="text" name="advisorName" class="ha-input" placeholder="e.g. Adv. K. R. Suresh Kumar" required>
+              </div>
+
+              <div class="ha-form-row">
+                <div class="ha-form-group">
+                  <label class="ha-field-label">Phone / WhatsApp *</label>
+                  <input type="tel" name="advisorPhone" class="ha-input" placeholder="+91 98470 12345" required>
+                </div>
+                <div class="ha-form-group">
+                  <label class="ha-field-label">Email Address *</label>
+                  <input type="email" name="advisorEmail" class="ha-input" placeholder="advisor@example.com" required>
+                </div>
+              </div>
+
+              <div class="ha-form-row">
+                <div class="ha-form-group">
+                  <label class="ha-field-label">Primary District *</label>
+                  <select name="advisorDistrict" class="ha-select" required>
+                    <option value="" disabled selected>Select District</option>
+                    <option value="Kochi">Kochi (Ernakulam)</option>
+                    <option value="Trivandrum">Thiruvananthapuram</option>
+                    <option value="Kozhikode">Kozhikode (Calicut)</option>
+                    <option value="Thrissur">Thrissur</option>
+                    <option value="Kottayam">Kottayam</option>
+                    <option value="Palakkad">Palakkad</option>
+                    <option value="Malappuram">Malappuram</option>
+                    <option value="Alappuzha">Alappuzha</option>
+                    <option value="Kollam">Kollam</option>
+                    <option value="Kannur">Kannur</option>
+                    <option value="Kasaragod">Kasaragod</option>
+                    <option value="Pathanamthitta">Pathanamthitta</option>
+                    <option value="Idukki">Idukki</option>
+                    <option value="Wayanad">Wayanad</option>
+                  </select>
+                </div>
+                <div class="ha-form-group">
+                  <label class="ha-field-label">Advisor Role *</label>
+                  <select name="advisorRole" class="ha-select" required>
+                    <option value="Individual Consultant">Individual Land Consultant</option>
+                    <option value="RERA Registered Agent">Licensed RERA Agent</option>
+                    <option value="Surveyor & Document Scrutinizer">Surveyor & Legal Scrutinizer</option>
+                    <option value="Agency / Firm">Real Estate Firm / Channel Partner</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="ha-form-group">
+                <label class="ha-field-label">Land Specialization *</label>
+                <select name="advisorSpecialization" class="ha-select">
+                  <option value="Residential Plots">Residential Plots & Layouts</option>
+                  <option value="Commercial & Roadfront">Commercial & Highway Roadfront Parcels</option>
+                  <option value="Joint Venture (JV)">Joint Venture (JV) Land Development</option>
+                  <option value="Plantation & Farmland">Plantations & Agriculture Lands</option>
+                  <option value="All Categories">All Land & Real Estate Deals</option>
+                </select>
+              </div>
+
+              <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 6px;">
+                Submit Application as Land Advisor →
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       12. MORTGAGE EMI & AFFORDABILITY CALCULATOR
+       ========================================================================== -->
+  <section class="ha-section" id="calculatorSection" style="background-color: #FFFFFF; border-top: 1px solid #E2E8F0;">
+    <div class="container">
+      <div class="ha-section-header">
+        <div>
+          <span class="ha-section-tag">Home Loan Tool</span>
+          <h2 class="ha-section-title">Kerala Home Loan EMI Calculator</h2>
+          <p class="ha-section-sub">Calculate your monthly repayments across leading banks including SBI, Federal Bank,
+            HDFC, and Canara Bank.</p>
+        </div>
+      </div>
+
+      <div class="ha-calc-card">
+        <!-- Sliders -->
+        <div class="ha-calc-inputs">
+          <div class="ha-slider-wrap">
+            <div class="ha-slider-header">
+              <span>Loan Amount:</span>
+              <span class="ha-slider-val" id="calcLoanDisplay">₹75.0 L</span>
+            </div>
+            <input type="range" id="calcLoanAmount" class="ha-range-slider" min="1000000" max="50000000" step="500000"
+              value="7500000">
+          </div>
+
+          <div class="ha-slider-wrap">
+            <div class="ha-slider-header">
+              <span>Loan Tenure:</span>
+              <span class="ha-slider-val" id="calcTenureDisplay">20 Years</span>
+            </div>
+            <input type="range" id="calcTenure" class="ha-range-slider" min="5" max="30" step="1" value="20">
+          </div>
+
+          <div class="ha-slider-wrap">
+            <div class="ha-slider-header">
+              <span>Interest Rate:</span>
+              <span class="ha-slider-val" id="calcInterestDisplay">8.5% p.a.</span>
+            </div>
+            <input type="range" id="calcInterest" class="ha-range-slider" min="6.5" max="14.0" step="0.25" value="8.5">
+          </div>
+        </div>
+
+        <!-- Calculated Summary Box -->
+        <div class="ha-calc-result-box">
+          <div class="ha-emi-display">
+            <div class="ha-emi-lbl">Estimated Monthly EMI</div>
+            <div class="ha-emi-amount" id="calcMonthlyEMI">₹65,087</div>
+          </div>
+
+          <div class="ha-calc-breakdown">
+            <div class="ha-calc-row">
+              <span>Principal Amount:</span>
+              <strong id="calcPrincipalDisplay">₹75.0 L</strong>
+            </div>
+            <div class="ha-calc-row">
+              <span>Total Interest Payable:</span>
+              <strong id="calcInterestTotalDisplay">₹81.2 L</strong>
+            </div>
+            <div class="ha-calc-row">
+              <span>Total Payment (Principal + Interest):</span>
+              <strong id="calcTotalPayableDisplay">₹156.2 L</strong>
+            </div>
+          </div>
+
+          <button class="btn btn-primary btn-sm"
+            onclick="alert('Home loan pre-approval request submitted to partner banks!')"
+            style="margin-top: 20px; width: 100%;">
+            Get Instant Bank Pre-Approval ›
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       11. FOOTER
+       ========================================================================== -->
+  <footer class="ha-footer">
+    <div class="container">
+      <div class="ha-footer-top">
+        <!-- Col 1: About Brand -->
+        <div>
+            <div style="margin-bottom: 14px;">
+              <img src="bhoomika_logo.jpg" alt="Bhoomika Land Bank"
+                style="height: 48px; width: auto; max-width: 190px; object-fit: contain; background: #FFFFFF; padding: 4px 10px; border-radius: 8px;">
+            </div>
+            <p style="font-size: 0.86rem; line-height: 1.6; color: #94A3B8; margin-bottom: 18px;">
+              Bhoomika Land Bank is Kerala's premier property marketplace: Buy, Sell, Develop, and Connect. Verified
+              plots, apartments, gated villas, and commercial real estate across all 14 districts.
+            </p>
+            <div style="font-size: 0.78rem; color: #CBD5E1;">
+              📍 Manorama Buildings, K.K. Road, Kottayam, Kerala - 686001
+            </div>
+          </div>
+
+          <!-- Col 2: Properties by City -->
+          <div class="ha-footer-col">
+            <h4>Properties by City</h4>
+            <ul class="ha-footer-links">
+              <li><a href="#verifiedListingsSection"
+                  onclick="document.getElementById('searchCity').value='Kochi'; renderProperties();">Flats in Kochi
+                  (Marine Drive)</a></li>
+              <li><a href="#verifiedListingsSection"
+                  onclick="document.getElementById('searchCity').value='Trivandrum'; renderProperties();">Villas in
+                  Trivandrum (Kowdiar)</a></li>
+              <li><a href="#verifiedListingsSection"
+                  onclick="document.getElementById('searchCity').value='Kozhikode'; renderProperties();">Apartments in
+                  Kozhikode (Palazhi)</a></li>
+              <li><a href="#verifiedListingsSection"
+                  onclick="document.getElementById('searchCity').value='Thrissur'; renderProperties();">Plots for Sale
+                  in Thrissur</a></li>
+              <li><a href="#verifiedListingsSection"
+                  onclick="document.getElementById('searchCity').value='Kottayam'; renderProperties();">Residential
+                  Houses in Kottayam</a></li>
+            </ul>
+          </div>
+
+          <!-- Col 3: Quick Links -->
+          <div class="ha-footer-col">
+            <h4>Buyer & Owner Services</h4>
+            <ul class="ha-footer-links">
+              <li><a href="javascript:void(0)" onclick="openLandAdvisorModal()" style="color: #FCD34D; font-weight: 700;">🤝 Register as Land Advisor</a></li>
+              <li><a href="javascript:void(0)" onclick="openPostModal()">Post Property Free</a></li>
+              <li><a href="#calculatorSection">Home Loan EMI Calculator</a></li>
+              <li><a href="#nriSection">NRI Investment Support</a></li>
+              <li><a href="#featuredProjectsSection">Kerala RERA Guidelines</a></li>
+              <li><a href="javascript:void(0)" onclick="openAuthModal()">Login to Owner Dashboard</a></li>
+            </ul>
+          </div>
+
+          <!-- Col 4: Newsletter -->
+          <div class="ha-footer-col">
+            <h4>Property Alerts</h4>
+            <p style="font-size: 0.84rem; color: #94A3B8;">
+              Get weekly WhatsApp and email alerts on new direct owner listings and builder price drops.
+            </p>
+            <form class="ha-footer-newsletter"
+              onsubmit="event.preventDefault(); alert('Subscribed to Bhoomika Land Bank property alerts!');">
+              <input type="email" class="ha-footer-input" placeholder="Your email or phone..." required>
+              <button type="submit" class="btn btn-primary btn-sm">Subscribe</button>
+            </form>
+          </div>
+        </div>
+
+        <div class="ha-footer-bottom">
+          <div>© 2026 Bhoomika Land Bank Kerala. All Rights Reserved. Buy • Sell • Develop • Connect.</div>
+          <div style="display: flex; gap: 18px;">
+            <a href="javascript:void(0)">Privacy Policy</a>
+            <a href="javascript:void(0)">Terms of Use</a>
+            <a href="javascript:void(0)">RERA Disclaimer</a>
+            <a href="javascript:void(0)">Sitemap</a>
+          </div>
+        </div>
+      </div>
+  </footer>
+
+  <!-- ==========================================================================
+       12. INTERACTIVE MODALS
+       ========================================================================== -->
+
+  <!-- Modal 1: Post Property Free -->
+  <div class="ha-modal-overlay" id="postModal">
+    <div class="ha-modal-box">
+      <button class="ha-modal-close" onclick="closeModals()">✕</button>
+      <h3 style="font-size: 1.4rem; font-weight: 800; color: #0F172A; margin-bottom: 4px;">Post Your Property for FREE
+      </h3>
+      <p style="font-size: 0.85rem; color: #64748B; margin-bottom: 20px;">0% Brokerage. Reach thousands of verified
+        Kerala buyers immediately.</p>
+
+      <form onsubmit="handlePostProperty(event)">
+        <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 12px; margin-bottom: 12px;">
+          <div>
+            <label class="ha-field-label">Listing Title</label>
+            <input type="text" id="postTitle" class="ha-input" placeholder="e.g. 3 BHK Luxury Gated Villa with Garden"
+              required>
+          </div>
+          <div>
+            <label class="ha-field-label">District</label>
+            <select id="postCity" class="ha-select">
+              <option value="Kochi">Kochi</option>
+              <option value="Trivandrum">Trivandrum</option>
+              <option value="Kozhikode">Kozhikode</option>
+              <option value="Thrissur">Thrissur</option>
+              <option value="Kottayam">Kottayam</option>
+            </select>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-bottom: 12px;">
+          <div>
+            <label class="ha-field-label">Locality / Landmark</label>
+            <input type="text" id="postLocality" class="ha-input" placeholder="e.g. Kakkanad" required>
+          </div>
+          <div>
+            <label class="ha-field-label">Property Type</label>
+            <select id="postType" class="ha-select">
+              <option value="Apartment">Apartment</option>
+              <option value="Villa">Villa</option>
+              <option value="Plot">Plot / Land</option>
+              <option value="Commercial">Commercial</option>
+            </select>
+          </div>
+          <div>
+            <label class="ha-field-label">Mode</label>
+            <select id="postCategory" class="ha-select">
+              <option value="Buy">For Sale</option>
+              <option value="Rent">For Rent</option>
+            </select>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-bottom: 12px;">
+          <div>
+            <label class="ha-field-label">Total Price (₹)</label>
+            <input type="number" id="postPrice" class="ha-input" placeholder="e.g. 8500000" required>
+          </div>
+          <div>
+            <label class="ha-field-label">Built-up Area (sq.ft)</label>
+            <input type="number" id="postArea" class="ha-input" placeholder="e.g. 1750" required>
+          </div>
+          <div>
+            <label class="ha-field-label">Bedrooms (BHK)</label>
+            <select id="postBHK" class="ha-select">
+              <option value="1">1 BHK</option>
+              <option value="2">2 BHK</option>
+              <option value="3" selected>3 BHK</option>
+              <option value="4">4 BHK</option>
+            </select>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px;">
+          <div>
+            <label class="ha-field-label">Owner Name</label>
+            <input type="text" id="postOwnerName" class="ha-input" placeholder="Your Name" required>
+          </div>
+          <div>
+            <label class="ha-field-label">Phone / WhatsApp</label>
+            <input type="tel" id="postOwnerPhone" class="ha-input" placeholder="+91 98765 43210" required>
+          </div>
+        </div>
+
+        <div style="margin-bottom: 18px;">
+          <label class="ha-field-label">Photo URL</label>
+          <input type="url" id="postImage" class="ha-input" placeholder="https://images.unsplash.com/...">
+        </div>
+
+        <button type="submit" class="btn btn-primary" style="width: 100%;">
+          Publish My Property FREE Now
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal 2: Contact Owner / Enquire -->
+  <div class="ha-modal-overlay" id="contactModal">
+    <div class="ha-modal-box">
+      <button class="ha-modal-close" onclick="closeModals()">✕</button>
+      <h3 style="font-size: 1.35rem; font-weight: 800; color: #0F172A; margin-bottom: 6px;">Contact Property Owner</h3>
+      <div id="contactPropDetails"></div>
+
+      <form
+        onsubmit="event.preventDefault(); alert('Inquiry sent! The owner will call or WhatsApp you directly.'); closeModals();">
+        <div style="margin-bottom: 10px;">
+          <label class="ha-field-label">Your Name</label>
+          <input type="text" class="ha-input" placeholder="Full Name" required>
+        </div>
+        <div style="margin-bottom: 10px;">
+          <label class="ha-field-label">Your Phone / WhatsApp</label>
+          <input type="tel" class="ha-input" placeholder="+91..." required>
+        </div>
+        <div style="margin-bottom: 16px;">
+          <label class="ha-field-label">Message for Owner</label>
+          <textarea class="ha-input" style="height: 70px; padding: 10px;"
+            placeholder="I am interested in this property. Please let me know when we can schedule a visit."></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width: 100%;">
+          Send Inquiry Instantly
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal 3: Shortlist -->
+  <div class="ha-modal-overlay" id="shortlistModal">
+    <div class="ha-modal-box" style="max-width: 720px;">
+      <button class="ha-modal-close" onclick="closeModals()">✕</button>
+      <h3 style="font-size: 1.35rem; font-weight: 800; color: #0F172A; margin-bottom: 16px;">Your Shortlisted Properties
+      </h3>
+      <div id="shortlistItems"></div>
+    </div>
+  </div>
+
+  <!-- Modal 4: Auth -->
+  <div class="ha-modal-overlay" id="authModal">
+    <div class="ha-modal-box" style="max-width: 440px; text-align: center;">
+      <button class="ha-modal-close" onclick="closeModals()">✕</button>
+      <div style="text-align: center; margin-bottom: 14px;">
+        <img src="bhoomika_logo.jpg" alt="Bhoomika Land Bank" style="height: 50px; width: auto; object-fit: contain;">
+      </div>
+      <h3 style="font-size: 1.35rem; font-weight: 800; color: #0F172A; margin-bottom: 4px;">Welcome to Bhoomika Land
+        Bank</h3>
+      <p style="font-size: 0.86rem; color: #64748B; margin-bottom: 20px;">Sign in to manage your listings and
+        shortlisted homes.</p>
+
+      <form onsubmit="event.preventDefault(); alert('Signed in successfully!'); closeModals();">
+        <input type="text" class="ha-input" placeholder="Mobile Number or Email" required style="margin-bottom: 12px;">
+        <input type="password" class="ha-input" placeholder="Password or OTP" required style="margin-bottom: 16px;">
+        <button type="submit" class="btn btn-primary" style="width: 100%; margin-bottom: 12px;">
+          Continue
+        </button>
+        <div style="font-size: 0.8rem; color: #64748B;">
+          New to Bhoomika Land Bank? <a href="javascript:void(0)" style="color: #0F3E32; font-weight: 700;">Create
+            Account</a>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal 5: Land Advisor Registration -->
+  <div class="ha-modal-overlay" id="landAdvisorModal">
+    <div class="ha-modal-box" style="max-width: 650px;">
+      <button class="ha-modal-close" onclick="closeModals()">✕</button>
+      <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 6px;">
+        <span style="background: #E8F5F1; color: #0F3E32; font-size: 0.72rem; font-weight: 800; padding: 3px 10px; border-radius: 9999px;">🤝 Bhoomika Partner Network</span>
+        <span style="font-size: 0.78rem; color: #64748B;">Official Land Advisor Onboarding</span>
+      </div>
+      <h3 style="font-size: 1.45rem; font-weight: 900; color: #0F172A; margin-bottom: 4px;">Land Advisor Registration Form</h3>
+      <p style="font-size: 0.85rem; color: #64748B; margin-bottom: 20px;">
+        Join Bhoomika Land Bank's certified network of land specialists across Kerala. Partner with us for exclusive land mandates, legal backing, and high-ticket NRI buyer leads.
+      </p>
+
+      <form onsubmit="handleLandAdvisorSubmit(event, this)">
+        <div class="ha-form-row">
+          <div class="ha-form-group">
+            <label class="ha-field-label">Full Name *</label>
+            <input type="text" name="advisorName" class="ha-input" placeholder="e.g. Adv. Rajesh Menon" required>
+          </div>
+          <div class="ha-form-group">
+            <label class="ha-field-label">Mobile Number (WhatsApp) *</label>
+            <input type="tel" name="advisorPhone" class="ha-input" placeholder="+91 98470 12345" required>
+          </div>
+        </div>
+
+        <div class="ha-form-row">
+          <div class="ha-form-group">
+            <label class="ha-field-label">Email Address *</label>
+            <input type="email" name="advisorEmail" class="ha-input" placeholder="rajesh@example.com" required>
+          </div>
+          <div class="ha-form-group">
+            <label class="ha-field-label">Primary Operating District *</label>
+            <select name="advisorDistrict" class="ha-select" required>
+              <option value="" disabled selected>Select District</option>
+              <option value="Kochi">Kochi (Ernakulam)</option>
+              <option value="Trivandrum">Thiruvananthapuram</option>
+              <option value="Kozhikode">Kozhikode (Calicut)</option>
+              <option value="Thrissur">Thrissur</option>
+              <option value="Kottayam">Kottayam</option>
+              <option value="Palakkad">Palakkad</option>
+              <option value="Malappuram">Malappuram</option>
+              <option value="Alappuzha">Alappuzha</option>
+              <option value="Kollam">Kollam</option>
+              <option value="Kannur">Kannur</option>
+              <option value="Kasaragod">Kasaragod</option>
+              <option value="Pathanamthitta">Pathanamthitta</option>
+              <option value="Idukki">Idukki</option>
+              <option value="Wayanad">Wayanad</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="ha-form-row">
+          <div class="ha-form-group">
+            <label class="ha-field-label">Operating Taluks / Localities *</label>
+            <input type="text" name="advisorLocalities" class="ha-input" placeholder="e.g. Kakkanad, Aluva, Kaloor" required>
+          </div>
+          <div class="ha-form-group">
+            <label class="ha-field-label">Years of Experience in Land Deals</label>
+            <select name="advisorExp" class="ha-select">
+              <option value="1-2">1 – 2 Years</option>
+              <option value="3-5" selected>3 – 5 Years</option>
+              <option value="5-10">5 – 10 Years</option>
+              <option value="10+">10+ Years (Senior Advisor)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="ha-form-row">
+          <div class="ha-form-group">
+            <label class="ha-field-label">Advisor Role *</label>
+            <select name="advisorRole" class="ha-select" required>
+              <option value="Individual Consultant">Individual Land Consultant</option>
+              <option value="RERA Registered Agent">Licensed RERA Agent</option>
+              <option value="Surveyor & Document Scrutinizer">Land Surveyor / Legal Document Scrutinizer</option>
+              <option value="Agency / Firm">Real Estate Firm / Channel Partner</option>
+            </select>
+          </div>
+          <div class="ha-form-group">
+            <label class="ha-field-label">Kerala RERA Agent ID (If applicable)</label>
+            <input type="text" name="advisorRera" class="ha-input" placeholder="e.g. K-RERA/AGT/2024/0142">
+          </div>
+        </div>
+
+        <div class="ha-form-group">
+          <label class="ha-field-label">Primary Land Specialization *</label>
+          <select name="advisorSpecialization" class="ha-select" required>
+            <option value="Residential Plots">Residential Plots & Gated Layouts</option>
+            <option value="Commercial & Roadfront">Commercial, Highway Frontage & IT Park Lands</option>
+            <option value="Joint Venture (JV)">Joint Venture (JV) Land Development</option>
+            <option value="Plantation & Farmland">Plantations (Tea, Coffee, Rubber) & Farmlands</option>
+            <option value="Waterfront & Tourism">Waterfront, Backwater & Eco-Tourism Lands</option>
+            <option value="All Land Deals">All Land Categories</option>
+          </select>
+        </div>
+
+        <div class="ha-form-group">
+          <label class="ha-field-label">Brief Background & Deal Track Record (Optional)</label>
+          <textarea name="advisorBio" class="ha-input" rows="2" style="resize: vertical;" placeholder="Briefly mention key land parcels closed or areas of active mandate..."></textarea>
+        </div>
+
+        <div style="margin-bottom: 18px;">
+          <label style="display: flex; align-items: flex-start; gap: 8px; font-size: 0.8rem; color: #475569; cursor: pointer;">
+            <input type="checkbox" required style="accent-color: #0F3E32; margin-top: 2px;">
+            <span>I confirm that the information provided is accurate and agree to adhere to Bhoomika Land Bank's professional code of ethics and transparent title scrutiny guidelines.</span>
+          </label>
+        </div>
+
+        <button type="submit" class="btn btn-primary" style="width: 100%; padding: 12px; font-size: 0.95rem;">
+          Register as Certified Land Advisor →
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Application Script -->
+  <script src="app.js"></script>
+</body>
+
+</html>

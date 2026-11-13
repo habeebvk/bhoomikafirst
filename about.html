@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us – Bhoomika Land Bank | Kerala's Complete Real Estate Digital Network</title>
+  <meta name="description" content="Learn about Bhoomika Land Bank's mission to transform Kerala's real estate ecosystem through verified titles, on-ground Land Advisors, and transparent land marketplace solutions.">
+
+  <!-- Google Fonts: Poppins & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Bhoomika Land Bank Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+
+  <style>
+    /* ==========================================================================
+       ABOUT US PAGE SPECIALIZED STYLES
+       ========================================================================== */
+    .about-hero {
+      position: relative;
+      padding: 120px 0 90px 0;
+      background: linear-gradient(135deg, rgba(18, 61, 50, 0.95) 0%, rgba(11, 25, 21, 0.98) 100%),
+                  url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=2000&q=85') center/cover no-repeat;
+      color: #FFFFFF;
+      text-align: center;
+    }
+    .about-breadcrumbs {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      color: var(--accent-gold);
+      font-weight: 600;
+      margin-bottom: 16px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .about-breadcrumbs a {
+      color: #FFFFFF;
+      opacity: 0.8;
+    }
+    .about-breadcrumbs a:hover {
+      opacity: 1;
+      color: var(--accent-gold);
+    }
+    .about-hero-title {
+      font-size: clamp(2.4rem, 5vw, 3.8rem);
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+    .about-hero-subtitle {
+      font-size: 1.15rem;
+      max-width: 780px;
+      margin: 0 auto;
+      color: rgba(255, 255, 255, 0.9);
+      line-height: 1.7;
+    }
+
+    /* Story Section Split */
+    .story-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+    .story-image-wrap {
+      position: relative;
+    }
+    .story-main-img {
+      width: 100%;
+      height: 480px;
+      object-fit: cover;
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow-lg);
+      border: 3px solid var(--border-color);
+    }
+    .story-float-card {
+      position: absolute;
+      bottom: -24px;
+      right: -24px;
+      background: var(--primary);
+      color: #FFFFFF;
+      padding: 24px 28px;
+      border-radius: var(--radius-lg);
+      border: 2px solid var(--accent-gold);
+      box-shadow: var(--shadow-hover);
+      max-width: 260px;
+    }
+    .story-float-num {
+      font-size: 2.2rem;
+      font-weight: 900;
+      color: var(--accent-gold);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .story-content h2 {
+      font-size: 2.4rem;
+      margin-bottom: 20px;
+      color: var(--text-heading);
+      line-height: 1.2;
+    }
+    .story-content p {
+      font-size: 1.02rem;
+      color: var(--text-body);
+      line-height: 1.75;
+      margin-bottom: 18px;
+    }
+
+    /* Pillars Cards */
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 28px;
+      margin-top: 20px;
+    }
+    .pillar-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-xl);
+      padding: 36px 28px;
+      box-shadow: var(--shadow-sm);
+      transition: all var(--transition-normal);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+    .pillar-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--accent-gold);
+      box-shadow: var(--shadow-hover);
+    }
+    .pillar-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: var(--radius-lg);
+      background: var(--primary-light);
+      color: var(--secondary);
+      font-size: 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    .pillar-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--text-heading);
+      margin-bottom: 12px;
+    }
+    .pillar-text {
+      font-size: 0.94rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+    }
+    .pillar-features {
+      list-style: none;
+      margin-top: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 0.88rem;
+      color: var(--text-body);
+      font-weight: 500;
+    }
+    .pillar-features li {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .pillar-features li::before {
+      content: '✓';
+      color: var(--secondary);
+      font-weight: 700;
+    }
+
+    /* Values Grid */
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+    }
+    .value-box {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      text-align: left;
+      transition: all var(--transition-fast);
+    }
+    .value-box:hover {
+      border-color: var(--secondary);
+      box-shadow: var(--shadow-sm);
+    }
+    .value-box h3 {
+      font-size: 1.15rem;
+      color: var(--text-heading);
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .value-box p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* Leadership Team */
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 30px;
+    }
+    .team-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      text-align: center;
+      transition: all var(--transition-normal);
+    }
+    .team-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-hover);
+      border-color: var(--secondary);
+    }
+    .team-img-wrap {
+      height: 260px;
+      overflow: hidden;
+      background: var(--bg-subtle);
+    }
+    .team-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    .team-card:hover .team-img-wrap img {
+      transform: scale(1.06);
+    }
+    .team-body {
+      padding: 24px;
+    }
+    .team-name {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text-heading);
+      margin-bottom: 4px;
+    }
+    .team-role {
+      font-size: 0.85rem;
+      color: var(--secondary);
+      font-weight: 600;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .team-bio {
+      font-size: 0.86rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+
+    /* Hubs & Office Locations */
+    .hubs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+    }
+    .hub-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      position: relative;
+      box-shadow: var(--shadow-xs);
+    }
+    .hub-card h3 {
+      font-size: 1.2rem;
+      color: var(--text-heading);
+      margin-bottom: 6px;
+    }
+    .hub-tag {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--accent-gold);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 14px;
+      display: block;
+    }
+    .hub-details {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      font-size: 0.9rem;
+      color: var(--text-body);
+    }
+
+    @media (max-width: 900px) {
+      .story-grid {
+        grid-template-columns: 1fr;
+      }
+      .story-float-card {
+        right: 10px;
+        bottom: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==========================================================================
+       1. TOP UTILITY BAR
+       ========================================================================== -->
+  <div class="top-bar">
+    <div class="container top-bar-inner">
+      <div class="top-bar-left">
+        <a href="tel:+919876543210" class="top-bar-contact">
+          <span>📞</span> +91 98765 43210
+        </a>
+        <a href="mailto:info@bhoomikalandbank.in" class="top-bar-contact">
+          <span>✉️</span> info@bhoomikalandbank.in
+        </a>
+        <span>📍 Kochi • Thiruvananthapuram • Kozhikode • Thrissur</span>
+      </div>
+
+      <div class="top-bar-right">
+        <!-- Currency Selector -->
+        <select class="utility-select" id="currencySelect" onchange="alert('Currency selected: ' + this.value)">
+          <option value="INR">INR (₹)</option>
+          <option value="USD">USD ($)</option>
+          <option value="AED">AED (د.إ)</option>
+          <option value="GBP">GBP (£)</option>
+        </select>
+
+        <!-- Dark / Light Mode Toggle -->
+        <button class="theme-toggle-btn" id="themeToggleBtn" onclick="toggleTheme()" title="Toggle Dark/Light Mode">
+          🌙
+        </button>
+
+        <a href="index.html" style="font-weight: 600; color: #FFFFFF;">
+          Land Bank Portal →
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       2. STICKY MAIN NAVIGATION WITH BHOOMIKA LOGO
+       ========================================================================== -->
+  <header class="site-header">
+    <div class="container navbar">
+      <!-- Brand Logo in Navbar -->
+      <a href="index.html" class="brand-logo" title="Bhoomika Land Bank">
+        <img src="bhoomika_logo.jpg" alt="Bhoomika Land Bank Logo" class="brand-logo-img">
+      </a>
+
+      <!-- Primary Navigation Links -->
+      <ul class="nav-menu">
+        <li><a href="index.html#home" class="nav-link">Home</a></li>
+        <li><a href="index.html#featuredListings" class="nav-link">Land Bank</a></li>
+        <li><a href="index.html#districts" class="nav-link">Districts</a></li>
+        <li><a href="index.html#howItWorks" class="nav-link">How It Works</a></li>
+        <li><a href="index.html#advisors" class="nav-link">Land Advisors</a></li>
+        <li><a href="about.html" class="nav-link active">About Us</a></li>
+      </ul>
+
+      <!-- Action CTAs -->
+      <div class="nav-actions">
+        <a href="index.html#featuredListings" class="btn btn-outline btn-sm">
+          Explore Land
+        </a>
+        <button class="btn btn-primary btn-pill" onclick="window.location.href='index.html#featuredListings'">
+          + List Your Land
+        </button>
+        <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">☰</button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="index.html#home" class="mobile-link">Home</a>
+      <a href="index.html#featuredListings" class="mobile-link">Land Bank</a>
+      <a href="index.html#districts" class="mobile-link">Districts</a>
+      <a href="index.html#howItWorks" class="mobile-link">How It Works</a>
+      <a href="index.html#advisors" class="mobile-link">Land Advisors</a>
+      <a href="about.html" class="mobile-link" style="color: var(--secondary);">About Us</a>
+      <button class="btn btn-primary" onclick="window.location.href='index.html#featuredListings'" style="width:100%; margin-top:12px;">+ List Your Land</button>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       3. ABOUT US HERO SECTION
+       ========================================================================== -->
+  <section class="about-hero">
+    <div class="container">
+      <div class="about-breadcrumbs">
+        <a href="index.html">Home</a>
+        <span>›</span>
+        <span>About Bhoomika</span>
+      </div>
+
+      <h1 class="about-hero-title">
+        
+        <span class="hero-gradient-text">Connecting Land, People<br>& Opportunities Across Kerala</span>
+      </h1>
+
+      <p class="about-hero-subtitle">
+        Bhoomika is not just a real estate listing directory. We are Kerala's comprehensive Real Estate Media and Digital Marketplace, uniting Land Owners, Buyers, Land Advisors, and Developers into a verified, transparent network.
+      </p>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       4. THE BHOOMIKA STORY & MISSION
+       ========================================================================== -->
+  <section class="section">
+    <div class="container">
+      <div class="story-grid">
+        <div class="story-image-wrap">
+          <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=80" class="story-main-img" alt="Kerala Landscape & Land">
+          <div class="story-float-card">
+            <div class="story-float-num">100%</div>
+            <div style="font-weight: 700; font-size: 1rem; margin-bottom: 4px;">Field Verified</div>
+            <div style="font-size: 0.8rem; opacity: 0.85;">Every parcel inspected on ground before listing activation.</div>
+          </div>
+        </div>
+
+        <div class="story-content">
+          <span class="section-tag">Our Vision & Purpose</span>
+          <h2>A Modern Era for Kerala's Land Marketplace</h2>
+          <p>
+            For decades, buying and selling land in Kerala was fraught with challenges: opaque ownership chains, unregistered intermediary cartels, fraudulent claims, unverified boundaries, and severe disconnect for Non-Resident Keralites (NRIs) wanting to invest in or manage their ancestral homeland.
+          </p>
+          <p>
+            <strong>BHOOMIKA</strong> was created to solve this fundamentally. By marrying deep local land expertise with cutting-edge digital verification, drone boundary inspection, and a decentralized network of certified on-ground <strong>Land Advisors</strong>, we bring total peace of mind to every transaction.
+          </p>
+          <p>
+            Whether it is an IT highway commercial plot in Kochi, a misty tea estate in Wayanad, or a peaceful backwater parcel in Alappuzha, Bhoomika stands as the gold standard of trust and verified land titles in God's Own Country.
+          </p>
+
+          <div style="display: flex; gap: 16px; margin-top: 28px; flex-wrap: wrap;">
+            <a href="index.html#featuredListings" class="btn btn-primary">Browse Land Bank →</a>
+            <a href="#pillars" class="btn btn-outline">Our 4 Core Pillars</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       5. FOUR CORE PILLARS OF BHOOMIKA
+       ========================================================================== -->
+  <section class="section" id="pillars" style="background: var(--bg-subtle);">
+    <div class="container">
+      <div class="section-header" style="justify-content: center; text-align: center;">
+        <div>
+          <span class="section-tag">Ecosystem Architecture</span>
+          <h2 class="section-title">The Four Pillars of Bhoomika</h2>
+          <p class="section-subtitle" style="margin: auto;">
+            Our integrated platform bridges media education, marketplace listings, verified field advisory, and institutional developers.
+          </p>
+        </div>
+      </div>
+
+      <div class="pillars-grid">
+        <!-- Pillar 1 -->
+        <div class="pillar-card">
+          <div class="pillar-icon">📺</div>
+          <h3 class="pillar-title">1. Bhoomika Media</h3>
+          <p class="pillar-text">
+            Kerala's authoritative voice on real estate knowledge, property legal awareness, market valuation trends, and expert interviews.
+          </p>
+          <ul class="pillar-features">
+            <li>Weekly YouTube market analysis videos</li>
+            <li>Kerala Land Revenue & title law education</li>
+            <li>Town planning & masterplan updates</li>
+            <li>Interviews with leading developers & lawyers</li>
+          </ul>
+        </div>
+
+        <!-- Pillar 2 -->
+        <div class="pillar-card">
+          <div class="pillar-icon">🏞️</div>
+          <h3 class="pillar-title">2. Bhoomika Land Bank</h3>
+          <p class="pillar-text">
+            A state-of-the-art property marketplace connecting genuine sellers with individual buyers, NRIs, and institutional investors.
+          </p>
+          <ul class="pillar-features">
+            <li>Search across all 14 Kerala districts</li>
+            <li>Unit rates (₹ per Cent & per Acre)</li>
+            <li>Detailed soil & classification reports</li>
+            <li>Commercial, agricultural & residential plots</li>
+          </ul>
+        </div>
+
+        <!-- Pillar 3 -->
+        <div class="pillar-card">
+          <div class="pillar-icon">🛡️</div>
+          <h3 class="pillar-title">3. Land Advisors Network</h3>
+          <p class="pillar-text">
+            A verified network of 350+ certified local property professionals stationed in every Taluk and Panchayat across Kerala.
+          </p>
+          <ul class="pillar-features">
+            <li>Physical on-site land inspection</li>
+            <li>Village office & encumbrance certificate checks</li>
+            <li>Road access width & boundary demarcation</li>
+            <li>Assisted site visits for buyers & NRIs</li>
+          </ul>
+        </div>
+
+        <!-- Pillar 4 -->
+        <div class="pillar-card">
+          <div class="pillar-icon">🏗️</div>
+          <h3 class="pillar-title">4. Developer Network</h3>
+          <p class="pillar-text">
+            A specialized institutional platform facilitating Joint Ventures (JV), builder acquisitions, and large-scale industrial projects.
+          </p>
+          <ul class="pillar-features">
+            <li>Builder-Landowner joint development models</li>
+            <li>Resort & eco-tourism land parcel procurement</li>
+            <li>Industrial corridor & logistics park land</li>
+            <li>Confidential off-market institutional mandates</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       6. CORE VALUES & ETHICS
+       ========================================================================== -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <span class="section-tag">Guiding Principles</span>
+          <h2 class="section-title">What Sets Bhoomika Apart</h2>
+          <p class="section-subtitle">
+            Every transaction and recommendation is governed by our unyielding commitment to legal integrity and land sustainability.
+          </p>
+        </div>
+      </div>
+
+      <div class="values-grid">
+        <div class="value-box">
+          <h3><span>⚖️</span> Title Integrity</h3>
+          <p>We do not accept listings with questionable heirship, litigated civil suits, or unconfirmed boundary sketches. Every listing undergoes village record verification.</p>
+        </div>
+
+        <div class="value-box">
+          <h3><span>📍</span> Local Ground Truth</h3>
+          <p>Online descriptions must match physical reality. Our Land Advisors personally walk the perimeter, assess approach roads, and verify drinking water sources.</p>
+        </div>
+
+        <div class="value-box">
+          <h3><span>🤝</span> Zero Hidden Brokerage</h3>
+          <p>Transparent commission models and direct contact options ensure land owners achieve fair market valuation without broker layer deductions.</p>
+        </div>
+
+        <div class="value-box">
+          <h3><span>🌿</span> Eco & Land Sustainability</h3>
+          <p>Kerala's delicate geography requires responsible land use. We advocate for sustainable plantations, wetland preservation compliance, and CRZ norms.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       7. LEADERSHIP & ADVISORY TEAM
+       ========================================================================== -->
+  <section class="section" style="background: var(--bg-subtle);">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <span class="section-tag">Leadership Team</span>
+          <h2 class="section-title">Stewards of Kerala's Land Future</h2>
+          <p class="section-subtitle">
+            Seasoned leaders combining 40+ years in Kerala land surveying, real estate law, and digital infrastructure.
+          </p>
+        </div>
+      </div>
+
+      <div class="team-grid">
+        <!-- Leader 1 -->
+        <div class="team-card">
+          <div class="team-img-wrap">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80" alt="Rajesh Kumar Menon">
+          </div>
+          <div class="team-body">
+            <h3 class="team-name">Rajesh Kumar Menon</h3>
+            <div class="team-role">Founder & Chief Executive Officer</div>
+            <p class="team-bio">
+              Over 18 years of pioneering leadership in Kerala property transactions, land aggregation, and NRI advisory across Kochi, Thrissur, and Trivandrum.
+            </p>
+          </div>
+        </div>
+
+        <!-- Leader 2 -->
+        <div class="team-card">
+          <div class="team-img-wrap">
+            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=600&q=80" alt="Adv. Suresh K. Nair">
+          </div>
+          <div class="team-body">
+            <h3 class="team-name">Adv. Suresh K. Nair</h3>
+            <div class="team-role">Head of Title & Legal Due Diligence</div>
+            <p class="team-bio">
+              Senior High Court advocate with 22 years of specialized practice in Kerala Land Reforms Act, Revenue records, and succession property titling.
+            </p>
+          </div>
+        </div>
+
+        <!-- Leader 3 -->
+        <div class="team-card">
+          <div class="team-img-wrap">
+            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=600&q=80" alt="Anoop V. Nambiar">
+          </div>
+          <div class="team-body">
+            <h3 class="team-name">Anoop V. Nambiar</h3>
+            <div class="team-role">Director of Field Land Advisors</div>
+            <p class="team-bio">
+              Former Survey of India consultant heading our 350-strong on-ground team of verified Land Advisors across all 14 Kerala districts.
+            </p>
+          </div>
+        </div>
+
+        <!-- Leader 4 -->
+        <div class="team-card">
+          <div class="team-img-wrap">
+            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80" alt="Meera Vasudevan">
+          </div>
+          <div class="team-body">
+            <h3 class="team-name">Meera Vasudevan</h3>
+            <div class="team-role">Head of NRI Land Concierge</div>
+            <p class="team-bio">
+              Specialized in managing ancestral estates, NRI property inspections, power-of-attorney coordination, and expatriate investment portfolios.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       8. REGIONAL HUBS ACROSS KERALA
+       ========================================================================== -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <span class="section-tag">Our Presence</span>
+          <h2 class="section-title">Regional Headquarters & Hubs</h2>
+          <p class="section-subtitle">
+            Visit our regional centers or connect with your designated Taluk Land Advisor.
+          </p>
+        </div>
+      </div>
+
+      <div class="hubs-grid">
+        <div class="hub-card">
+          <span class="hub-tag">Central Kerala & Headquarters</span>
+          <h3>Kochi Corporate Hub</h3>
+          <div class="hub-details">
+            <div>📍 4th Floor, Bhoomika Towers, NH-544 Bypass, Kalamassery, Kochi 682024</div>
+            <div>📞 +91 484 290 8800 / +91 98765 43210</div>
+            <div>✉️ kochi@bhoomikalandbank.in</div>
+          </div>
+        </div>
+
+        <div class="hub-card">
+          <span class="hub-tag">South Kerala Hub</span>
+          <h3>Trivandrum Regional Center</h3>
+          <div class="hub-details">
+            <div>📍 Technopark Phase 3 Road, Kazhakkoottam, Thiruvananthapuram 695582</div>
+            <div>📞 +91 471 270 5500</div>
+            <div>✉️ tvm@bhoomikalandbank.in</div>
+          </div>
+        </div>
+
+        <div class="hub-card">
+          <span class="hub-tag">Malabar Region Hub</span>
+          <h3>Calicut Regional Center</h3>
+          <div class="hub-details">
+            <div>📍 Thondayad Junction, Mini Bypass Road, Kozhikode 673016</div>
+            <div>📞 +91 495 240 3300</div>
+            <div>✉️ calicut@bhoomikalandbank.in</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       9. CALL TO ACTION
+       ========================================================================== -->
+  <section class="section" style="padding-top: 10px;">
+    <div class="container">
+      <div class="cta-banner">
+        <h2>Ready to Connect with Kerala's Land Network?</h2>
+        <p>
+          Whether you want to list verified property, discover investment acreage, or register as a certified local Land Advisor, Bhoomika is your trusted partner.
+        </p>
+        <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+          <a href="index.html#featuredListings" class="btn btn-primary">Explore Land Bank</a>
+          <button class="btn btn-glass" onclick="window.location.href='index.html#howItWorks'">How Verification Works</button>
+          <a href="mailto:info@bhoomikalandbank.in" class="btn btn-glass">Contact Our Team</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       10. FOOTER WITH BHOOMIKA BRANDING
+       ========================================================================== -->
+  <footer class="site-footer" id="about">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <a href="index.html" class="brand-logo" style="margin-bottom: 16px;">
+            <img src="bhoomika_logo.jpg" alt="Bhoomika Land Bank" class="brand-logo-img" style="height: 56px;">
+          </a>
+          <p style="line-height: 1.6; max-width: 360px;">
+            Bhoomika Land Bank is Kerala's complete real estate digital network, connecting land owners, buyers, advisors and developers through transparency, field verification, and digital trust.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Land Categories</h4>
+          <ul class="footer-links">
+            <li><a href="index.html#featuredListings">Commercial Highway Land</a></li>
+            <li><a href="index.html#featuredListings">Tea & Rubber Plantations</a></li>
+            <li><a href="index.html#featuredListings">Backwater Waterfront Land</a></li>
+            <li><a href="index.html#featuredListings">Residential Villa Plots</a></li>
+            <li><a href="index.html#featuredListings">Hilltop Plateau Land</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Bhoomika Network</h4>
+          <ul class="footer-links">
+            <li><a href="about.html">About Bhoomika</a></li>
+            <li><a href="index.html#howItWorks">How It Works</a></li>
+            <li><a href="index.html#advisors">Find an Advisor</a></li>
+            <li><a href="index.html#featuredListings">Browse Marketplace</a></li>
+            <li><a href="javascript:void(0)">Bhoomika Media</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Stay Connected</h4>
+          <p style="font-size: 0.85rem;">Subscribe for verified Kerala land listings, agricultural opportunities, and legal insights.</p>
+          <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Subscribed to Bhoomika Land updates!')">
+            <input type="email" class="newsletter-input" placeholder="Your email address..." required>
+            <button type="submit" class="btn btn-primary btn-sm">Subscribe</button>
+          </form>
+          <div class="footer-social">
+            <a href="javascript:void(0)" class="social-link">📘 Facebook</a>
+            <a href="javascript:void(0)" class="social-link">📺 YouTube</a>
+            <a href="javascript:void(0)" class="social-link">📸 Instagram</a>
+            <a href="javascript:void(0)" class="social-link">💬 WhatsApp</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>© 2026 BHOOMIKA LAND BANK. Connecting Land, People & Opportunities. All Rights Reserved.</div>
+        <div style="display: flex; gap: 24px;">
+          <a href="javascript:void(0)">Privacy Policy</a>
+          <a href="javascript:void(0)">Terms of Service</a>
+          <a href="javascript:void(0)">Land Verification Policy</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function toggleTheme() {
+      const current = document.documentElement.getAttribute('data-theme') || 'light';
+      const newTheme = current === 'light' ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', newTheme);
+      localStorage.setItem('bhoomika_theme', newTheme);
+      const btn = document.getElementById('themeToggleBtn');
+      if (btn) btn.innerHTML = newTheme === 'dark' ? '☀️' : '🌙';
+    }
+
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobileMenu');
+      if (menu) menu.classList.toggle('active');
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const savedTheme = localStorage.getItem('bhoomika_theme') || 'light';
+      document.documentElement.setAttribute('data-theme', savedTheme);
+      const btn = document.getElementById('themeToggleBtn');
+      if (btn) btn.innerHTML = savedTheme === 'dark' ? '☀️' : '🌙';
+    });
+  </script>
+</body>
+</html>
+

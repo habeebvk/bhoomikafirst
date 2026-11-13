@@ -1,0 +1,2364 @@
+/* ==========================================================================
+   HELLOADDRESS KERALA – PREMIER REAL ESTATE PORTAL
+   Inspired by HelloAddress.com (Malayala Manorama)
+   ========================================================================== */
+
+:root {
+  /* Brand Color Palette */
+  --ha-primary: #0F3E32;
+  /* Signature Bhoomika Dark Emerald Green */
+  --ha-primary-dark: #082F26;
+  /* Deep Forest Green */
+  --ha-primary-light: #E8F5F1;
+  /* Soft Emerald Tint */
+  --ha-primary-gradient: linear-gradient(135deg, #135946 0%, #082F26 100%);
+
+  --ha-dark: #0F172A;
+  /* Midnight Slate */
+  --ha-dark-surface: #1E293B;
+  /* Dark Slate Surface */
+
+  --ha-accent-gold: #C9A45C;
+  /* Warm Regal Gold matching Bhoomika Logo */
+  --ha-accent-green: #10B981;
+  /* Verified Emerald */
+  --ha-accent-blue: #2563EB;
+  /* Trust Blue */
+
+  /* Neutral Slate Palette */
+  --ha-gray-900: #0F172A;
+  --ha-gray-800: #1E293B;
+  --ha-gray-700: #334155;
+  --ha-gray-600: #475569;
+  --ha-gray-500: #64748B;
+  --ha-gray-400: #94A3B8;
+  --ha-gray-300: #CBD5E1;
+  --ha-gray-200: #E2E8F0;
+  --ha-gray-100: #F1F5F9;
+  --ha-gray-50: #F8FAFC;
+  --ha-white: #FFFFFF;
+
+  /* Typography */
+  --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-heading: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  /* Border Radii */
+  --ha-radius-xs: 4px;
+  --ha-radius-sm: 8px;
+  --ha-radius-md: 12px;
+  --ha-radius-lg: 16px;
+  --ha-radius-xl: 24px;
+  --ha-radius-full: 9999px;
+
+  /* Shadows */
+  --ha-shadow-xs: 0 1px 2px rgba(15, 23, 42, 0.05);
+  --ha-shadow-sm: 0 4px 12px rgba(15, 23, 42, 0.06);
+  --ha-shadow-md: 0 10px 25px rgba(15, 23, 42, 0.08);
+  --ha-shadow-lg: 0 20px 40px rgba(15, 23, 42, 0.12);
+  --ha-shadow-red: 0 8px 24px rgba(15, 62, 50, 0.28);
+  --ha-shadow-glow: 0 0 30px rgba(15, 62, 50, 0.18);
+
+  --ha-transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Base Styles */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 15px;
+}
+
+body {
+  font-family: var(--font-main);
+  background-color: var(--ha-gray-50);
+  color: var(--ha-gray-800);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: var(--ha-transition);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+/* Layout Containers */
+.container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Utility Badges & Tags */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: var(--ha-radius-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.badge-owner {
+  background-color: #E8F5E9;
+  color: #2E7D32;
+  border: 1px solid #A5D6A7;
+}
+
+.badge-rera {
+  background-color: #FFF8E1;
+  color: #B45309;
+  border: 1px solid #FDE68A;
+}
+
+.badge-ready {
+  background-color: #EFF6FF;
+  color: #1D4ED8;
+  border: 1px solid #BFDBFE;
+}
+
+.badge-featured {
+  background: var(--ha-primary-gradient);
+  color: #FFFFFF;
+}
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-weight: 700;
+  font-size: 0.92rem;
+  padding: 11px 22px;
+  border-radius: var(--ha-radius-sm);
+  cursor: pointer;
+  border: none;
+  transition: var(--ha-transition);
+  outline: none;
+  white-space: nowrap;
+}
+
+.btn-primary {
+  background: var(--ha-primary-gradient);
+  color: #FFFFFF;
+  box-shadow: var(--ha-shadow-red);
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #0B4636 0%, #06241D 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(15, 62, 50, 0.4);
+}
+
+.btn-secondary {
+  background-color: var(--ha-dark);
+  color: #FFFFFF;
+}
+
+.btn-secondary:hover {
+  background-color: #1E293B;
+  transform: translateY(-2px);
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: var(--ha-primary);
+  border: 1.5px solid var(--ha-primary);
+}
+
+.btn-outline:hover {
+  background-color: var(--ha-primary);
+  color: #FFFFFF;
+}
+
+.btn-white {
+  background-color: #FFFFFF;
+  color: var(--ha-dark);
+  box-shadow: var(--ha-shadow-sm);
+}
+
+.btn-white:hover {
+  background-color: var(--ha-gray-50);
+  transform: translateY(-2px);
+}
+
+.btn-sm {
+  padding: 7px 15px;
+  font-size: 0.82rem;
+}
+
+.btn-lg {
+  padding: 14px 28px;
+  font-size: 1rem;
+}
+
+/* ==========================================================================
+   1. TOP UTILITY HEADER BAR
+   ========================================================================== */
+.ha-top-bar {
+  background-color: #FFFFFF;
+  border-bottom: 1px solid var(--ha-gray-200);
+  font-size: 0.82rem;
+  color: var(--ha-gray-600);
+  position: relative;
+  z-index: 60;
+}
+
+.ha-top-bar-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 40px;
+}
+
+.ha-top-left,
+.ha-top-right {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.ha-city-selector {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--ha-dark);
+  font-weight: 600;
+}
+
+.ha-city-select {
+  border: none;
+  background: transparent;
+  font-weight: 700;
+  color: var(--ha-primary);
+  cursor: pointer;
+  outline: none;
+  padding-right: 4px;
+}
+
+.ha-top-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--ha-gray-600);
+  font-weight: 500;
+}
+
+.ha-top-link:hover {
+  color: var(--ha-primary);
+}
+
+.ha-top-pill {
+  background: #FFF1F2;
+  color: var(--ha-primary);
+  padding: 2px 10px;
+  border-radius: var(--ha-radius-full);
+  font-weight: 700;
+  font-size: 0.75rem;
+}
+
+.ha-count-badge {
+  background-color: var(--ha-primary);
+  color: #FFFFFF;
+  font-size: 0.7rem;
+  font-weight: 800;
+  padding: 1px 6px;
+  border-radius: var(--ha-radius-full);
+}
+
+/* ==========================================================================
+   2. MAIN NAVIGATION HEADER
+   ========================================================================== */
+.ha-main-header {
+  background-color: #FFFFFF;
+  box-shadow: 0 2px 12px rgba(15, 23, 42, 0.05);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 1px solid var(--ha-gray-200);
+}
+
+.ha-nav-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 74px;
+}
+
+/* Brand Logo */
+.ha-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
+
+.ha-navbar-logo {
+  height: 56px;
+  max-height: 58px;
+  width: auto;
+  max-width: 210px;
+  object-fit: contain;
+  display: block;
+  transition: transform 0.25s ease, filter 0.25s ease;
+}
+
+.ha-navbar-logo:hover {
+  transform: scale(1.02);
+}
+
+.ha-brand-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ha-logo-icon {
+  width: 42px;
+  height: 42px;
+  background: var(--ha-primary-gradient);
+  border-radius: var(--ha-radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFFFFF;
+  font-size: 1.4rem;
+  font-weight: 900;
+  box-shadow: var(--ha-shadow-red);
+}
+
+.ha-logo-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.ha-logo-title {
+  font-size: 1.35rem;
+  font-weight: 900;
+  color: var(--ha-dark);
+  letter-spacing: -0.5px;
+  line-height: 1.1;
+}
+
+.ha-logo-title span {
+  color: var(--ha-primary);
+}
+
+.ha-logo-sub {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--ha-gray-500);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* Navigation Links */
+.ha-nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  list-style: none;
+}
+
+.ha-nav-item>a {
+  padding: 10px 14px;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--ha-gray-700);
+  border-radius: var(--ha-radius-sm);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.ha-nav-item>a:hover,
+.ha-nav-item>a.active {
+  color: var(--ha-primary);
+  background-color: var(--ha-primary-light);
+}
+
+.ha-nav-item>a.active {
+  font-weight: 700;
+}
+
+/* Post Property CTA Button */
+.ha-post-btn {
+  background: var(--ha-primary-gradient);
+  color: #FFFFFF !important;
+  font-weight: 800;
+  border-radius: var(--ha-radius-full);
+  padding: 9px 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: var(--ha-shadow-red);
+  position: relative;
+}
+
+.ha-post-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(15, 62, 50, 0.35);
+}
+
+.ha-free-tag {
+  background-color: #FBBF24;
+  color: #78350F;
+  font-size: 0.65rem;
+  font-weight: 900;
+  padding: 1px 6px;
+  border-radius: var(--ha-radius-full);
+  text-transform: uppercase;
+}
+
+.mobile-toggle {
+  display: none;
+  background: transparent;
+  border: none;
+  font-size: 1.6rem;
+  color: var(--ha-dark);
+  cursor: pointer;
+}
+
+/* ==========================================================================
+   3. HERO BANNER & MULTI-TAB SEARCH CONSOLE
+   ========================================================================== */
+.ha-hero-wrap {
+  position: relative;
+  background: linear-gradient(180deg, #0B132B 0%, #1C2541 100%);
+  min-height: 580px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 60px 0 80px;
+  overflow: hidden;
+}
+
+.ha-hero-bg-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  opacity: 0.32;
+  filter: contrast(1.05) brightness(1.1);
+  z-index: 1;
+}
+
+.ha-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 30%, rgba(15, 23, 42, 0.45) 0%, rgba(11, 19, 43, 0.88) 85%);
+  z-index: 2;
+}
+
+.ha-hero-content {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+}
+
+.ha-hero-header {
+  max-width: 860px;
+  margin: 0 auto 30px;
+}
+
+.ha-hero-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #FFFFFF;
+  font-size: 0.82rem;
+  font-weight: 700;
+  padding: 6px 18px;
+  border-radius: var(--ha-radius-full);
+  margin-bottom: 16px;
+}
+
+.ha-dot-pulse {
+  width: 8px;
+  height: 8px;
+  background-color: #10B981;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #10B981;
+}
+
+.ha-hero-title {
+  font-size: 2.85rem;
+  font-weight: 800;
+  color: #FFFFFF;
+  line-height: 1.2;
+  margin-bottom: 12px;
+  letter-spacing: -0.5px;
+}
+
+.ha-hero-title span {
+  color: #F87171;
+}
+
+.ha-hero-subtitle {
+  font-size: 1.05rem;
+  color: #CBD5E1;
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+/* ==========================================================================
+   MULTI-TAB SEARCH CONSOLE (Signature HelloAddress Pattern)
+   ========================================================================== */
+.ha-search-card {
+  background: #FFFFFF;
+  border-radius: var(--ha-radius-lg);
+  box-shadow: var(--ha-shadow-lg), 0 0 0 1px rgba(255, 255, 255, 0.4);
+  max-width: 1080px;
+  margin: 0 auto;
+  overflow: hidden;
+  text-align: left;
+}
+
+/* Search Tabs */
+.ha-search-tabs {
+  display: flex;
+  background-color: #F1F5F9;
+  border-bottom: 1px solid var(--ha-gray-200);
+}
+
+.ha-search-tab {
+  flex: 1;
+  padding: 14px 18px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--ha-gray-600);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: var(--ha-transition);
+  border-bottom: 3px solid transparent;
+}
+
+.ha-search-tab:hover {
+  color: var(--ha-primary);
+  background-color: #FFFFFF;
+}
+
+.ha-search-tab.active {
+  background-color: #FFFFFF;
+  color: var(--ha-primary);
+  border-bottom-color: var(--ha-primary);
+}
+
+/* Search Inputs Container */
+.ha-search-body {
+  padding: 22px 24px;
+}
+
+.ha-search-grid {
+  display: grid;
+  grid-template-columns: 1.3fr 1.8fr 1.3fr 1.3fr auto;
+  gap: 14px;
+  align-items: flex-end;
+}
+
+.ha-field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.ha-field-label {
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--ha-gray-600);
+}
+
+.ha-input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.ha-input-icon {
+  position: absolute;
+  left: 12px;
+  font-size: 1rem;
+  color: var(--ha-gray-400);
+  pointer-events: none;
+}
+
+.ha-input,
+.ha-select {
+  width: 100%;
+  height: 48px;
+  padding: 0 12px 0 38px;
+  border: 1.5px solid var(--ha-gray-200);
+  border-radius: var(--ha-radius-sm);
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--ha-dark);
+  background-color: #FFFFFF;
+  outline: none;
+  transition: var(--ha-transition);
+}
+
+.ha-input:focus,
+.ha-select:focus {
+  border-color: var(--ha-primary);
+  box-shadow: 0 0 0 3px rgba(15, 62, 50, 0.15);
+}
+
+.btn-search {
+  height: 48px;
+  padding: 0 26px;
+  background: var(--ha-primary-gradient);
+  color: #FFFFFF;
+  font-weight: 800;
+  border: none;
+  border-radius: var(--ha-radius-sm);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  box-shadow: var(--ha-shadow-red);
+  transition: var(--ha-transition);
+}
+
+.btn-search:hover {
+  background: linear-gradient(135deg, #0B4636 0%, #06241D 100%);
+  transform: translateY(-2px);
+}
+
+/* BHK Selector Pills & Filter Toggles */
+.ha-search-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px dashed var(--ha-gray-200);
+}
+
+.ha-bhk-pills {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ha-bhk-label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--ha-gray-600);
+  margin-right: 4px;
+}
+
+.ha-bhk-chip {
+  padding: 5px 12px;
+  border-radius: var(--ha-radius-full);
+  font-size: 0.82rem;
+  font-weight: 700;
+  border: 1px solid var(--ha-gray-300);
+  background-color: #FFFFFF;
+  color: var(--ha-gray-700);
+  cursor: pointer;
+  transition: var(--ha-transition);
+}
+
+.ha-bhk-chip:hover,
+.ha-bhk-chip.active {
+  background-color: var(--ha-primary-light);
+  border-color: var(--ha-primary);
+  color: var(--ha-primary);
+}
+
+.ha-quick-checks {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.ha-check-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--ha-gray-700);
+  cursor: pointer;
+}
+
+.ha-check-label input {
+  accent-color: var(--ha-primary);
+  width: 15px;
+  height: 15px;
+}
+
+/* ==========================================================================
+   4. STATS TRUST STRIP
+   ========================================================================== */
+.ha-trust-strip {
+  background-color: #FFFFFF;
+  border-bottom: 1px solid var(--ha-gray-200);
+  padding: 24px 0;
+  box-shadow: var(--ha-shadow-xs);
+}
+
+.ha-trust-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.ha-trust-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 0 12px;
+  border-right: 1px solid var(--ha-gray-200);
+}
+
+.ha-trust-item:last-child {
+  border-right: none;
+}
+
+.ha-trust-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--ha-radius-md);
+  background-color: var(--ha-primary-light);
+  color: var(--ha-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.ha-trust-num {
+  font-size: 1.45rem;
+  font-weight: 900;
+  color: var(--ha-dark);
+  line-height: 1.1;
+}
+
+.ha-trust-lbl {
+  font-size: 0.82rem;
+  color: var(--ha-gray-500);
+  font-weight: 500;
+}
+
+/* ==========================================================================
+   5. PROPERTY CATEGORY SHORTCUTS
+   ========================================================================== */
+.ha-section {
+  padding: 64px 0;
+}
+
+.ha-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 32px;
+}
+
+.ha-section-tag {
+  font-size: 0.8rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--ha-primary);
+  letter-spacing: 1px;
+  display: inline-block;
+  margin-bottom: 6px;
+}
+
+.ha-section-title {
+  font-size: 1.85rem;
+  font-weight: 800;
+  color: var(--ha-dark);
+  line-height: 1.25;
+}
+
+.ha-section-sub {
+  font-size: 0.95rem;
+  color: var(--ha-gray-500);
+  margin-top: 4px;
+}
+
+.ha-categories-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 18px;
+}
+
+.ha-cat-card {
+  background-color: #FFFFFF;
+  border-radius: var(--ha-radius-md);
+  border: 1px solid var(--ha-gray-200);
+  padding: 24px 18px;
+  text-align: center;
+  transition: var(--ha-transition);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: var(--ha-shadow-xs);
+}
+
+.ha-cat-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--ha-primary);
+  box-shadow: var(--ha-shadow-md);
+}
+
+.ha-cat-icon {
+  width: 58px;
+  height: 58px;
+  border-radius: var(--ha-radius-md);
+  background: var(--ha-gray-50);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  margin-bottom: 14px;
+  transition: var(--ha-transition);
+}
+
+.ha-cat-card:hover .ha-cat-icon {
+  background: var(--ha-primary-light);
+  transform: scale(1.1);
+}
+
+.ha-cat-title {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--ha-dark);
+  margin-bottom: 4px;
+}
+
+.ha-cat-count {
+  font-size: 0.8rem;
+  color: var(--ha-gray-500);
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   6. TRENDING KERALA REAL ESTATE HUBS (DISTRICTS & LOCALITIES)
+   ========================================================================== */
+.ha-hubs-container {
+  background-color: #FFFFFF;
+  border-radius: var(--ha-radius-lg);
+  border: 1px solid var(--ha-gray-200);
+  padding: 28px;
+  box-shadow: var(--ha-shadow-xs);
+}
+
+.ha-district-tabs {
+  display: flex;
+  gap: 10px;
+  border-bottom: 2px solid var(--ha-gray-200);
+  padding-bottom: 14px;
+  margin-bottom: 20px;
+  overflow-x: auto;
+}
+
+.ha-dist-btn {
+  padding: 8px 18px;
+  border-radius: var(--ha-radius-full);
+  font-size: 0.92rem;
+  font-weight: 700;
+  background-color: var(--ha-gray-100);
+  color: var(--ha-gray-700);
+  border: none;
+  cursor: pointer;
+  transition: var(--ha-transition);
+  white-space: nowrap;
+}
+
+.ha-dist-btn.active,
+.ha-dist-btn:hover {
+  background-color: var(--ha-dark);
+  color: #FFFFFF;
+}
+
+.ha-dist-btn.active {
+  background-color: var(--ha-primary);
+}
+
+.ha-localities-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.ha-loc-card {
+  padding: 14px 16px;
+  background-color: var(--ha-gray-50);
+  border-radius: var(--ha-radius-sm);
+  border: 1px solid var(--ha-gray-200);
+  cursor: pointer;
+  transition: var(--ha-transition);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ha-loc-card:hover {
+  background-color: #FFFFFF;
+  border-color: var(--ha-primary);
+  transform: translateX(4px);
+  box-shadow: var(--ha-shadow-sm);
+}
+
+.ha-loc-name {
+  font-weight: 700;
+  color: var(--ha-dark);
+  font-size: 0.94rem;
+}
+
+.ha-loc-info {
+  font-size: 0.78rem;
+  color: var(--ha-gray-500);
+}
+
+.ha-loc-arrow {
+  color: var(--ha-primary);
+  font-weight: 800;
+}
+
+/* ==========================================================================
+   7. FEATURED RERA-APPROVED PROJECTS
+   ========================================================================== */
+.ha-projects-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.ha-project-card {
+  background-color: #FFFFFF;
+  border-radius: var(--ha-radius-md);
+  border: 1px solid var(--ha-gray-200);
+  overflow: hidden;
+  box-shadow: var(--ha-shadow-sm);
+  transition: var(--ha-transition);
+}
+
+.ha-project-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--ha-shadow-lg);
+  border-color: var(--ha-gray-300);
+}
+
+.ha-project-thumb {
+  position: relative;
+  height: 220px;
+  overflow: hidden;
+  background-color: var(--ha-dark);
+}
+
+.ha-project-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.ha-project-card:hover .ha-project-img {
+  transform: scale(1.06);
+}
+
+.ha-project-badges {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  display: flex;
+  gap: 6px;
+  z-index: 2;
+}
+
+.ha-builder-logo {
+  position: absolute;
+  bottom: -20px;
+  right: 18px;
+  width: 54px;
+  height: 54px;
+  background: #FFFFFF;
+  border-radius: 50%;
+  padding: 4px;
+  box-shadow: var(--ha-shadow-md);
+  border: 2px solid #FFFFFF;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  color: var(--ha-dark);
+  font-size: 0.75rem;
+}
+
+.ha-project-body {
+  padding: 24px 20px 20px;
+}
+
+.ha-project-title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: var(--ha-dark);
+  margin-bottom: 4px;
+}
+
+.ha-project-builder {
+  font-size: 0.82rem;
+  color: var(--ha-primary);
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.ha-project-loc {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.85rem;
+  color: var(--ha-gray-600);
+  margin-bottom: 14px;
+}
+
+.ha-project-specs {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-top: 1px solid var(--ha-gray-200);
+  border-bottom: 1px solid var(--ha-gray-200);
+  margin-bottom: 16px;
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: var(--ha-gray-700);
+}
+
+.ha-project-price-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ha-price-val {
+  font-size: 1.3rem;
+  font-weight: 900;
+  color: var(--ha-dark);
+}
+
+.ha-price-sub {
+  font-size: 0.75rem;
+  color: var(--ha-gray-500);
+}
+
+/* ==========================================================================
+   8. VERIFIED LISTINGS DECK & FILTER BAR
+   ========================================================================== */
+.ha-listings-filter-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 14px;
+  background-color: #FFFFFF;
+  padding: 16px 20px;
+  border-radius: var(--ha-radius-md);
+  border: 1px solid var(--ha-gray-200);
+  margin-bottom: 28px;
+}
+
+.ha-filter-pills {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.ha-pill-btn {
+  padding: 7px 16px;
+  border-radius: var(--ha-radius-full);
+  font-size: 0.86rem;
+  font-weight: 700;
+  background-color: var(--ha-gray-100);
+  color: var(--ha-gray-700);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: var(--ha-transition);
+}
+
+.ha-pill-btn.active,
+.ha-pill-btn:hover {
+  background-color: var(--ha-primary);
+  color: #FFFFFF;
+}
+
+.ha-sort-control {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ha-sort-select {
+  padding: 7px 12px;
+  border: 1px solid var(--ha-gray-200);
+  border-radius: var(--ha-radius-sm);
+  background-color: #FFFFFF;
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: var(--ha-dark);
+  cursor: pointer;
+  outline: none;
+}
+
+/* Property Cards Grid */
+.ha-properties-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.ha-prop-card {
+  background-color: #FFFFFF;
+  border-radius: var(--ha-radius-md);
+  border: 1px solid var(--ha-gray-200);
+  overflow: hidden;
+  box-shadow: var(--ha-shadow-xs);
+  transition: var(--ha-transition);
+  display: flex;
+  flex-direction: column;
+}
+
+.ha-prop-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--ha-shadow-md);
+  border-color: var(--ha-gray-300);
+}
+
+.ha-prop-thumb {
+  position: relative;
+  height: 220px;
+  overflow: hidden;
+  background-color: var(--ha-dark);
+}
+
+.ha-prop-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.ha-prop-card:hover .ha-prop-img {
+  transform: scale(1.06);
+}
+
+.ha-prop-top-badges {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  z-index: 2;
+}
+
+.ha-prop-fav-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(4px);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.05rem;
+  cursor: pointer;
+  color: var(--ha-gray-600);
+  transition: var(--ha-transition);
+  z-index: 2;
+}
+
+.ha-prop-fav-btn:hover,
+.ha-prop-fav-btn.active {
+  background-color: var(--ha-primary);
+  color: #FFFFFF;
+}
+
+.ha-prop-price-tag {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  background: rgba(15, 23, 42, 0.92);
+  backdrop-filter: blur(6px);
+  color: #FFFFFF;
+  padding: 5px 12px;
+  border-radius: var(--ha-radius-sm);
+  z-index: 2;
+}
+
+.ha-prop-price {
+  font-size: 1.18rem;
+  font-weight: 900;
+  color: #FFFFFF;
+}
+
+.ha-prop-price span {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #94A3B8;
+}
+
+.ha-prop-body {
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.ha-prop-type {
+  font-size: 0.75rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--ha-primary);
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+
+.ha-prop-title {
+  font-size: 1.08rem;
+  font-weight: 800;
+  color: var(--ha-dark);
+  line-height: 1.35;
+  margin-bottom: 6px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  height: 2.7em;
+}
+
+.ha-prop-loc {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.85rem;
+  color: var(--ha-gray-500);
+  margin-bottom: 14px;
+}
+
+.ha-prop-specs {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-top: 1px solid var(--ha-gray-200);
+  border-bottom: 1px solid var(--ha-gray-200);
+  margin-bottom: 14px;
+}
+
+.ha-prop-spec-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--ha-gray-700);
+}
+
+.ha-prop-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+}
+
+.ha-owner-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ha-owner-avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  object-fit: cover;
+  background-color: var(--ha-gray-200);
+}
+
+.ha-owner-name {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--ha-dark);
+}
+
+.ha-owner-role {
+  font-size: 0.72rem;
+  color: var(--ha-gray-500);
+}
+
+.ha-prop-actions {
+  display: flex;
+  gap: 6px;
+}
+
+.btn-whatsapp {
+  background-color: #25D366;
+  color: #FFFFFF;
+  padding: 6px 12px;
+  border-radius: var(--ha-radius-sm);
+  font-size: 0.8rem;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-whatsapp:hover {
+  background-color: #1EBE5D;
+}
+
+/* ==========================================================================
+   9. KERALA NRI CORNER & PROMOTIONAL BANNERS
+   ========================================================================== */
+.ha-nri-banner {
+  background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+  border-radius: var(--ha-radius-lg);
+  padding: 44px;
+  color: #FFFFFF;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 40px;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.ha-nri-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(245, 158, 11, 0.2);
+  color: #FBBF24;
+  border: 1px solid rgba(245, 158, 11, 0.4);
+  padding: 4px 14px;
+  border-radius: var(--ha-radius-full);
+  font-size: 0.8rem;
+  font-weight: 800;
+  margin-bottom: 14px;
+}
+
+.ha-nri-title {
+  font-size: 2.1rem;
+  font-weight: 900;
+  line-height: 1.2;
+  margin-bottom: 14px;
+}
+
+.ha-nri-title span {
+  color: #F87171;
+}
+
+.ha-nri-desc {
+  font-size: 0.98rem;
+  color: #CBD5E1;
+  line-height: 1.6;
+  margin-bottom: 22px;
+}
+
+.ha-nri-perks {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.ha-nri-perk {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.88rem;
+  color: #E2E8F0;
+  font-weight: 600;
+}
+
+.ha-nri-perk span.check {
+  color: #10B981;
+}
+
+.ha-nri-card-box {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: var(--ha-radius-md);
+  padding: 24px;
+}
+
+.ha-nri-card-title {
+  font-size: 1.15rem;
+  font-weight: 800;
+  margin-bottom: 12px;
+  color: #FFFFFF;
+}
+
+/* ==========================================================================
+   10. MORTGAGE EMI CALCULATOR
+   ========================================================================== */
+.ha-calc-card {
+  background-color: #FFFFFF;
+  border-radius: var(--ha-radius-lg);
+  border: 1px solid var(--ha-gray-200);
+  box-shadow: var(--ha-shadow-md);
+  padding: 36px;
+  display: grid;
+  grid-template-columns: 1.3fr 0.9fr;
+  gap: 36px;
+}
+
+.ha-calc-inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.ha-slider-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ha-slider-header {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--ha-dark);
+}
+
+.ha-slider-val {
+  color: var(--ha-primary);
+  font-weight: 800;
+  font-size: 1.05rem;
+}
+
+.ha-range-slider {
+  width: 100%;
+  accent-color: var(--ha-primary);
+  cursor: pointer;
+  height: 6px;
+}
+
+.ha-calc-result-box {
+  background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+  border-radius: var(--ha-radius-md);
+  padding: 28px;
+  color: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.ha-emi-display {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.ha-emi-lbl {
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  color: #94A3B8;
+  letter-spacing: 1px;
+}
+
+.ha-emi-amount {
+  font-size: 2.4rem;
+  font-weight: 900;
+  color: #F87171;
+  margin-top: 4px;
+}
+
+.ha-calc-breakdown {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  padding-top: 16px;
+  font-size: 0.88rem;
+}
+
+.ha-calc-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.ha-calc-row strong {
+  color: #FFFFFF;
+}
+
+/* ==========================================================================
+   11. FOOTER
+   ========================================================================== */
+.ha-footer {
+  background-color: #0F172A;
+  color: #94A3B8;
+  padding: 60px 0 24px;
+  border-top: 3px solid var(--ha-primary);
+}
+
+.ha-footer-top {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1.2fr;
+  gap: 36px;
+  margin-bottom: 48px;
+}
+
+.ha-footer-col h4 {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #FFFFFF;
+  margin-bottom: 18px;
+  position: relative;
+  padding-bottom: 8px;
+}
+
+.ha-footer-col h4::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 28px;
+  height: 2px;
+  background-color: var(--ha-primary);
+}
+
+.ha-footer-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.ha-footer-links a {
+  color: #94A3B8;
+  font-size: 0.86rem;
+  transition: var(--ha-transition);
+}
+
+.ha-footer-links a:hover {
+  color: #FFFFFF;
+  padding-left: 5px;
+}
+
+.ha-footer-newsletter {
+  display: flex;
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.ha-footer-input {
+  flex-grow: 1;
+  height: 42px;
+  padding: 0 14px;
+  border-radius: var(--ha-radius-sm);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.08);
+  color: #FFFFFF;
+  outline: none;
+  font-size: 0.88rem;
+}
+
+.ha-footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.82rem;
+  color: #64748B;
+}
+
+/* ==========================================================================
+   12. MODALS & POPUPS
+   ========================================================================== */
+.ha-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(6px);
+  z-index: 1000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.ha-modal-overlay.open {
+  display: flex;
+  animation: fadeIn 0.2s ease;
+}
+
+.ha-modal-box {
+  background-color: #FFFFFF;
+  border-radius: var(--ha-radius-lg);
+  max-width: 680px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 32px;
+  position: relative;
+  box-shadow: var(--ha-shadow-lg);
+}
+
+.ha-modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: var(--ha-gray-100);
+  border: none;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  font-size: 1.1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--ha-transition);
+}
+
+.ha-modal-close:hover {
+  background: var(--ha-gray-200);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ==========================================================================
+   SPONSORED ADVERTISEMENT SPACES
+   ========================================================================== */
+.ha-ad-section {
+  padding: 24px 0;
+  background-color: var(--ha-gray-50);
+}
+
+.ha-ad-wrapper {
+  background-color: #FFFFFF;
+  border: 1px solid var(--ha-gray-200);
+  border-radius: var(--ha-radius-lg);
+  padding: 16px 20px;
+  box-shadow: var(--ha-shadow-xs);
+  transition: var(--ha-transition);
+}
+
+.ha-ad-wrapper:hover {
+  box-shadow: var(--ha-shadow-sm);
+  border-color: var(--ha-gray-300);
+}
+
+.ha-ad-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px dashed var(--ha-gray-200);
+}
+
+.ha-ad-badge {
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--ha-gray-500);
+  background-color: var(--ha-gray-100);
+  padding: 3px 8px;
+  border-radius: var(--ha-radius-xs);
+}
+
+.ha-ad-partner-link {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--ha-primary);
+  text-decoration: none;
+  transition: var(--ha-transition);
+}
+
+.ha-ad-partner-link:hover {
+  text-decoration: underline;
+  color: var(--ha-primary-dark);
+}
+
+.ha-ad-banner {
+  min-height: 105px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #F8FAFC 0%, #E8F5F1 100%);
+  border-radius: var(--ha-radius-md);
+  border: 1.5px solid rgba(15, 62, 50, 0.15);
+  overflow: hidden;
+  position: relative;
+}
+
+.ha-ad-creative {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 26px;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.ha-ad-creative-left {
+  flex: 1;
+  min-width: 280px;
+}
+
+.ha-ad-partner-tag {
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: var(--ha-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  display: inline-block;
+  margin-bottom: 4px;
+}
+
+.ha-ad-creative-title {
+  font-size: 1.25rem;
+  font-weight: 900;
+  color: var(--ha-dark);
+  margin-bottom: 4px;
+  line-height: 1.25;
+}
+
+.ha-ad-creative-desc {
+  font-size: 0.86rem;
+  color: var(--ha-gray-600);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.ha-ad-creative-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.ha-ad-offer-pill {
+  background-color: #FEF3C7;
+  color: #92400E;
+  font-size: 0.8rem;
+  font-weight: 800;
+  padding: 6px 14px;
+  border-radius: var(--ha-radius-full);
+  border: 1px solid #FCD34D;
+  white-space: nowrap;
+}
+
+.ha-ad-cta-btn {
+  white-space: nowrap;
+}
+
+/* ==========================================================================
+   YOUTUBE VIDEO SHOWCASE SECTION
+   ========================================================================== */
+.ha-video-section {
+  background-color: #FFFFFF;
+  border-top: 1px solid var(--ha-gray-200);
+  border-bottom: 1px solid var(--ha-gray-200);
+}
+
+.ha-video-layout {
+  display: grid;
+  grid-template-columns: 1.7fr 1fr;
+  gap: 28px;
+  align-items: start;
+}
+
+.ha-video-player-card {
+  background-color: #0F172A;
+  border-radius: var(--ha-radius-lg);
+  overflow: hidden;
+  box-shadow: var(--ha-shadow-lg);
+  border: 1px solid #334155;
+}
+
+.ha-video-iframe-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background-color: #000000;
+}
+
+.ha-video-iframe-wrap iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.ha-video-meta {
+  padding: 20px 24px;
+  background: #0F172A;
+  color: #FFFFFF;
+}
+
+.ha-video-badge-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.ha-video-live-badge {
+  background-color: #DC2626;
+  color: #FFFFFF;
+  font-size: 0.68rem;
+  font-weight: 900;
+  letter-spacing: 1px;
+  padding: 3px 8px;
+  border-radius: var(--ha-radius-xs);
+  text-transform: uppercase;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.ha-video-live-badge::before {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background-color: #FFFFFF;
+  border-radius: 50%;
+  animation: pulse 1.5s infinite;
+}
+
+.ha-video-location-tag {
+  font-size: 0.78rem;
+  color: #94A3B8;
+  font-weight: 600;
+}
+
+.ha-video-active-title {
+  font-size: 1.18rem;
+  font-weight: 800;
+  color: #FFFFFF;
+  margin-bottom: 8px;
+  line-height: 1.35;
+}
+
+.ha-video-meta-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding-top: 14px;
+  margin-top: 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.ha-video-meta-stats {
+  font-size: 0.84rem;
+  color: #94A3B8;
+}
+
+.btn-youtube-subscribe {
+  background-color: #DC2626;
+  color: #FFFFFF;
+  font-size: 0.82rem;
+  font-weight: 800;
+  padding: 8px 16px;
+  border-radius: var(--ha-radius-full);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  transition: var(--ha-transition);
+}
+
+.btn-youtube-subscribe:hover {
+  background-color: #B91C1C;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(220, 38, 38, 0.45);
+}
+
+/* Video Playlist Side */
+.ha-video-playlist-box {
+  background-color: var(--ha-gray-50);
+  border: 1px solid var(--ha-gray-200);
+  border-radius: var(--ha-radius-lg);
+  padding: 20px;
+}
+
+.ha-video-playlist-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--ha-gray-200);
+}
+
+.ha-video-playlist-header h4 {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--ha-dark);
+  margin: 0;
+}
+
+.ha-video-playlist-items {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-height: 480px;
+  overflow-y: auto;
+}
+
+.ha-video-item {
+  display: flex;
+  gap: 12px;
+  padding: 10px;
+  background-color: #FFFFFF;
+  border: 1.5px solid var(--ha-gray-200);
+  border-radius: var(--ha-radius-md);
+  cursor: pointer;
+  transition: var(--ha-transition);
+  position: relative;
+  text-align: left;
+  width: 100%;
+}
+
+.ha-video-item:hover {
+  border-color: var(--ha-primary);
+  transform: translateX(3px);
+  box-shadow: var(--ha-shadow-xs);
+}
+
+.ha-video-item.active {
+  border-color: var(--ha-primary);
+  background-color: var(--ha-primary-light);
+  box-shadow: 0 0 0 1px var(--ha-primary);
+}
+
+.ha-video-thumb-wrap {
+  position: relative;
+  width: 110px;
+  height: 70px;
+  flex-shrink: 0;
+  border-radius: var(--ha-radius-sm);
+  overflow: hidden;
+  background-color: #0F172A;
+}
+
+.ha-video-thumb-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.ha-video-item:hover .ha-video-thumb-wrap img {
+  transform: scale(1.08);
+}
+
+.ha-video-duration {
+  position: absolute;
+  bottom: 4px;
+  right: 4px;
+  background: rgba(0, 0, 0, 0.85);
+  color: #FFFFFF;
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 1px 5px;
+  border-radius: 3px;
+}
+
+.ha-video-thumb-play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 26px;
+  height: 26px;
+  background: rgba(15, 62, 50, 0.85);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFFFFF;
+  font-size: 0.7rem;
+  transition: var(--ha-transition);
+}
+
+.ha-video-item:hover .ha-video-thumb-play {
+  background: #DC2626;
+  transform: translate(-50%, -50%) scale(1.15);
+}
+
+.ha-video-item-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 3px;
+  flex-grow: 1;
+  min-width: 0;
+}
+
+.ha-video-item-title {
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: var(--ha-dark);
+  line-height: 1.3;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.ha-video-item.active .ha-video-item-title {
+  color: var(--ha-primary);
+}
+
+.ha-video-item-meta {
+  font-size: 0.74rem;
+  color: var(--ha-gray-500);
+}
+
+/* ==========================================================================
+   LAND ADVISOR NETWORK & REGISTRATION FORM
+   ========================================================================== */
+.ha-advisor-section {
+  padding: 60px 0;
+  background: linear-gradient(180deg, #F8FAFC 0%, #FFFFFF 100%);
+  border-top: 1px solid var(--ha-gray-200);
+  border-bottom: 1px solid var(--ha-gray-200);
+}
+
+.ha-advisor-card {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 36px;
+  align-items: center;
+  background: #FFFFFF;
+  border-radius: var(--ha-radius-xl);
+  border: 1.5px solid var(--ha-gray-200);
+  padding: 36px 40px;
+  box-shadow: var(--ha-shadow-md);
+}
+
+.ha-advisor-badge-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+
+.ha-advisor-badge {
+  background: var(--ha-primary-light);
+  color: var(--ha-primary);
+  font-size: 0.78rem;
+  font-weight: 800;
+  padding: 4px 12px;
+  border-radius: var(--ha-radius-full);
+  border: 1px solid rgba(15, 62, 50, 0.2);
+}
+
+.ha-advisor-tag {
+  background: #FEF3C7;
+  color: #92400E;
+  font-size: 0.76rem;
+  font-weight: 800;
+  padding: 4px 12px;
+  border-radius: var(--ha-radius-full);
+  border: 1px solid #FCD34D;
+}
+
+.ha-advisor-title {
+  font-size: 1.95rem;
+  font-weight: 900;
+  color: var(--ha-dark);
+  margin-bottom: 12px;
+  line-height: 1.25;
+}
+
+.ha-advisor-desc {
+  font-size: 0.92rem;
+  color: var(--ha-gray-600);
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+.ha-advisor-perks {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.ha-advisor-perk-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.ha-perk-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: var(--ha-radius-sm);
+  background: var(--ha-primary-light);
+  color: var(--ha-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
+  flex-shrink: 0;
+}
+
+.ha-advisor-perk-item strong {
+  display: block;
+  font-size: 0.92rem;
+  font-weight: 800;
+  color: var(--ha-dark);
+  margin-bottom: 2px;
+}
+
+.ha-advisor-perk-item span {
+  font-size: 0.82rem;
+  color: var(--ha-gray-500);
+  line-height: 1.4;
+}
+
+.ha-advisor-form-side {
+  width: 100%;
+}
+
+.ha-advisor-form-box {
+  background: #F8FAFC;
+  border: 1px solid var(--ha-gray-200);
+  border-radius: var(--ha-radius-lg);
+  padding: 26px 28px;
+  box-shadow: var(--ha-shadow-xs);
+}
+
+.ha-advisor-form-header h3 {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--ha-dark);
+  margin-bottom: 4px;
+}
+
+.ha-advisor-form-header p {
+  font-size: 0.8rem;
+  color: var(--ha-gray-500);
+  margin-bottom: 18px;
+}
+
+.ha-form-group {
+  margin-bottom: 13px;
+}
+
+.ha-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 13px;
+}
+
+/* Responsive Overrides */
+@media (max-width: 1024px) {
+  .ha-search-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .ha-trust-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .ha-categories-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .ha-projects-grid,
+  .ha-properties-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .ha-localities-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .ha-nri-banner {
+    grid-template-columns: 1fr;
+    padding: 30px;
+  }
+
+  .ha-footer-top {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .ha-video-layout {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .ha-advisor-card {
+    grid-template-columns: 1fr;
+    padding: 26px 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .ha-form-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  .ha-ad-creative {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 16px;
+  }
+
+  .ha-ad-creative-right {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .ha-navbar-logo {
+    height: 44px;
+    max-width: 155px;
+  }
+
+  .ha-top-bar {
+    display: none;
+  }
+
+  .ha-nav-menu,
+  .ha-post-btn {
+    display: none;
+  }
+
+  .mobile-toggle {
+    display: block;
+  }
+
+  .ha-hero-title {
+    font-size: 2.1rem;
+  }
+
+  .ha-search-tabs {
+    overflow-x: auto;
+  }
+
+  .ha-search-tab {
+    padding: 12px 14px;
+    font-size: 0.85rem;
+    white-space: nowrap;
+  }
+
+  .ha-search-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .btn-search {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .ha-trust-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .ha-trust-item {
+    border-right: none;
+    border-bottom: 1px solid var(--ha-gray-200);
+    padding-bottom: 14px;
+  }
+
+  .ha-categories-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .ha-projects-grid,
+  .ha-properties-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ha-localities-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ha-calc-card {
+    grid-template-columns: 1fr;
+    padding: 20px;
+  }
+
+  .ha-footer-top {
+    grid-template-columns: 1fr;
+  }
+
+  .ha-footer-bottom {
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+  }
+}
